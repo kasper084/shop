@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProductMenu implements Menu {
-
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    //privet UserService userService = newUserService();
+    //privet ProductService productService = new ProductService();
+    //privet OrderService orderService = new OrderService();
 
-    public void addToOptions() {
+    @Override
+    public void addOptions() {
         options.add("1. Product list");
         options.add("2. Search for specific product");
         options.add("3. Add specific product to order");
@@ -22,22 +23,22 @@ public class ProductMenu implements Menu {
 
     @Override
     public void show() {
-        addToOptions();
+        addOptions();
         showOptions(options);
         while (true) {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    //userService.showProductList();
+                    //productService.showProductList();
                     break;
                 case 2:
-                    //userService.getProduct();
+                    //productService.getProduct();
                     break;
                 case 3:
-                    ////orderService.addSpecificProduct();
+                    //orderService.addSpecificProduct();
                     break;
                 case 4:
-                    //orderService.confirm();
+                    //orderService.checkout();
                     break;
                 case 0:
                     close();
@@ -47,7 +48,5 @@ public class ProductMenu implements Menu {
     }
 
     @Override
-    public void close() {
-        new UserMenu().show();
-    }
+    public void close() { new UserMenu().show(); }
 }

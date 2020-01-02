@@ -11,7 +11,8 @@ public class AdminMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
 
-    public void addToOptions() {
+    @Override
+    public void addOptions() {
         options.add("1. Block/Unblock user");
         options.add("2. Order menu");
         options.add("3. Products menu");

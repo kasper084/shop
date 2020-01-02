@@ -9,9 +9,9 @@ import java.util.Scanner;
 public class UserMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    //privet UserService userService = newUserService();
 
-    public void addToOptions() {
+    @Override
+    public void addOptions() {
         options.add("1. Product list");
         options.add("2. My orders");
         options.add("0. Exit");
@@ -19,7 +19,7 @@ public class UserMenu implements Menu {
 
     @Override
     public void show() {
-        addToOptions();
+        addOptions();
         showOptions(options);
 
         while (true) {
@@ -29,7 +29,7 @@ public class UserMenu implements Menu {
                     new ProductMenu().show();
                     break;
                 case 2:
-
+                    new OrderMenu().show();
                     break;
                 case 0:
                     close();

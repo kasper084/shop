@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface Menu {
 
+    void addOptions();
+
     void show();
 
     void close();

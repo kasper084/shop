@@ -11,7 +11,7 @@ public class LoginMenu implements Menu {
     private String password;
     //privet UserService userService = newUserService();
 
-    public void addToOptions() {
+    public void addOptions() {
         options.add("1. Login");
         options.add("2. Register user");
         options.add("0. Exit");
@@ -26,7 +26,7 @@ public class LoginMenu implements Menu {
 
     @Override
     public void show() {
-        addToOptions();
+        addOptions();
         showOptions(options);
 
         while (true) {
