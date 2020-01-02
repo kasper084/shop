@@ -1,4 +1,6 @@
-package shop.menu;
+package shop.menu.user;
+
+import shop.menu.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,14 @@ public class UserMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
+                    new ProductMenu().show();
+                    break;
+                case 2:
 
+                    break;
+                case 0:
+                    close();
+                    break;
             }
         }
     }
