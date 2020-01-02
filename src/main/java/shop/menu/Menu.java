@@ -1,12 +1,15 @@
 package shop.menu;
 
+import java.util.List;
+
 public interface Menu {
-    void showMenu();
 
-    void closeMenu();
+    void show();
 
-    default void printOptions(String[] options) {
-        for (String option : options) {
+    void close();
+
+    default void showOptions (List<?> options) {
+        for (Object option: options) {
             System.out.println(option);
         }
     }
