@@ -32,13 +32,13 @@ public class ProductMenu implements Menu {
                     //productService.showProductList();
                     break;
                 case 2:
-                    //productService.getProduct();
+                    //productService.getProduct(name);
                     break;
                 case 3:
-                    //orderService.addSpecificProduct();
+                    //orderService.addSpecificProduct(productId);
                     break;
                 case 4:
-                    //orderService.checkout();
+                    //orderService.checkout(orderId);
                     break;
                 case 0:
                     close();
@@ -48,5 +48,7 @@ public class ProductMenu implements Menu {
     }
 
     @Override
-    public void close() { new UserMenu().show(); }
+    public void close() {
+        new UserMenu().show();
+    }
 }
