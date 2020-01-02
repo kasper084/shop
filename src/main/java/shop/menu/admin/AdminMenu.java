@@ -21,11 +21,30 @@ public class AdminMenu implements Menu {
 
     @Override
     public void show() {
+        addOptions();
+        showOptions(options);
 
+        while (true) {
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    new BlockMenu().show();
+                    break;
+                case 2:
+                    new OrderMenu().show();
+                    break;
+                case 3:
+                    new ProductMenu().show();
+                    break;
+                case 0:
+                    close();
+                    break;
+            }
+        }
     }
 
     @Override
     public void close() {
-
+        System.exit(0);
     }
 }
