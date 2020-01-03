@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    private boolean start;
     //privet ProductService productService = new ProductService();
     //privet OrderService orderService = new OrderService();
 
@@ -27,9 +26,7 @@ public class ProductMenu implements Menu {
         addOptions();
         showOptions(options);
 
-        start = true;
-
-        while (start) {
+        while (true) {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -56,7 +53,6 @@ public class ProductMenu implements Menu {
 
     @Override
     public void close() {
-        start = false;
         new UserMenu().show();
     }
 }

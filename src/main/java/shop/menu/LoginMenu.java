@@ -11,7 +11,6 @@ public class LoginMenu implements Menu {
     private String email;
     private String phoneNumber;
     private String password;
-    private boolean start;
     //privet UserService userService = newUserService();
 
     public void addOptions() {
@@ -40,9 +39,7 @@ public class LoginMenu implements Menu {
         addOptions();
         showOptions(options);
 
-        start = true;
-
-        while (start) {
+        while (true) {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -65,7 +62,6 @@ public class LoginMenu implements Menu {
 
     @Override
     public void close() {
-        start = false;
         System.exit(0);
     }
 }
