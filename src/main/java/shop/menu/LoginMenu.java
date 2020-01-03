@@ -7,8 +7,11 @@ import java.util.Scanner;
 public class LoginMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    private String login;
+    private String name;
+    private String email;
+    private String phoneNumber;
     private String password;
+    private boolean start;
     //privet UserService userService = newUserService();
 
     public void addOptions() {
@@ -18,10 +21,18 @@ public class LoginMenu implements Menu {
     }
 
     public void getLoginAndPassword() {
-        System.out.println("Enter login");
-        login = scanner.nextLine();
+        System.out.println("Enter email");
+        email = scanner.nextLine();
         System.out.println("Enter password");
         password = scanner.nextLine();
+    }
+
+    public void getUserInfo() {
+        getLoginAndPassword();
+        System.out.println("Enter name");
+        name = scanner.nextLine();
+        System.out.println("Enter phone number");
+        phoneNumber = scanner.nextLine();
     }
 
     @Override
@@ -29,7 +40,9 @@ public class LoginMenu implements Menu {
         addOptions();
         showOptions(options);
 
-        while (true) {
+        start = true;
+
+        while (start) {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -38,18 +51,21 @@ public class LoginMenu implements Menu {
                     //if(user) new UserMenu.show();
                     break;
                 case 2:
-                    getLoginAndPassword();
-                    // userService.registerUser(login, password);
+                    getUserInfo();
+                    //userService.createUser();
                 case 0:
                     close();
                     break;
+                default:
+                    showOptions(options);
+                    break;
             }
         }
-
     }
 
     @Override
     public void close() {
+        start = false;
         System.exit(0);
     }
 }

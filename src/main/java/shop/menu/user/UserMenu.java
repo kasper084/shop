@@ -34,6 +34,9 @@ public class UserMenu implements Menu {
                 case 0:
                     close();
                     break;
+                default:
+                    showOptions(options);
+                    break;
             }
         }
     }
