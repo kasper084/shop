@@ -6,7 +6,7 @@ public interface OrderService {
 
     void showOrder(String orderId);
 
-    List<Order> showAllOrdersByUser(String usersId);
+    List<Order> showAllOrdersForUser(String usersId);
 
     void checkout(String orderId);
 

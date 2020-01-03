@@ -6,7 +6,7 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
-    void addProduct(String productId);
+    void addNewProduct(String productId, String name, Double price);
 
     void editProduct(String productId);
 }
