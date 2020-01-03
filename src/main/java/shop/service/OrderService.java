@@ -4,9 +4,9 @@ public interface OrderService {
 
     void addProductToOrder(String productId);
 
-    void showOrder(String orderId);
+    void  getOrder(String orderId);
 
-    List<Order> showAllOrdersForUser(String usersId);
+    List<Order> getAllOrdersForUser(String usersId);
 
     void checkout(String orderId);
 
