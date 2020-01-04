@@ -39,10 +39,13 @@ public class User {
     public void setpassword(String a) {
         password = a;
     }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String a) { phoneNumber = a; }
+    public void setPhoneNumber(String a) {
+        phoneNumber = a;
+    }
 }
 
