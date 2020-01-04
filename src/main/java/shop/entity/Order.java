@@ -4,7 +4,7 @@ public class Order {
     private String id;
     private String userid;
     private String status;
-    private String list;
+    private String productList;
 
     public String getUserid() {
         return userid;
@@ -32,10 +32,10 @@ public class Order {
     }
 
     public String getList() {
-        return list;
+        return productList;
     }
 
     public void setList(String a) {
-        list = a;
+        productList = a;
     }
 }
