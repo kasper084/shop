@@ -3,7 +3,7 @@ package shop.entity;
 public class Product {
     private String id;
     private String name;
-    private String price;
+    private Double price;
     private String description;
 
     public String getName() {
@@ -23,11 +23,11 @@ public class Product {
     }
 
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String a) {
+    public void setPrice(Double a) {
         price = a;
     }
 
