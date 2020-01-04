@@ -4,7 +4,7 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private String PhoneNumber;
+    private String phoneNumber;
     private String password;
 
     public String getName() {
@@ -39,5 +39,10 @@ public class User {
     public void setpassword(String a) {
         password = a;
     }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String a) { phoneNumber = a; }
 }
 
