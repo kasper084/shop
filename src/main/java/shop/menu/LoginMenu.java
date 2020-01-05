@@ -1,5 +1,9 @@
 package shop.menu;
 
+import shop.menu.admin.AdminMenu;
+import shop.menu.user.UserMenu;
+import shop.service.impl.UserServiceImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +15,7 @@ public class LoginMenu implements Menu {
     private String email;
     private String phoneNumber;
     private String password;
-    //privet UserService userService = newUserService();
+    private UserServiceImpl userService = new UserServiceImpl();
 
     public void addOptions() {
         options.add("1. Login");
@@ -44,12 +48,13 @@ public class LoginMenu implements Menu {
             switch (choice) {
                 case 1:
                     getLoginAndPassword();
-                    //if(admin) new AdminMenu.show();
-                    //if(user) new UserMenu.show();
+                    if (userService.login(email, password)) {
+                        userService.getMenu();
+                    } else {}
                     break;
                 case 2:
                     getUserInfo();
-                    //userService.createUser();
+                    userService.registerUser(email, password, name, phoneNumber);
                 case 0:
                     close();
                     break;
