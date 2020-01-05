@@ -1,12 +1,12 @@
 package shop.entity;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 public class Order {
     private String id;
     private String userid;
     private String status;
-    private List productList;
+    private List<Product> productList;
 
     public String getUserid() {
         return userid;
@@ -33,11 +33,11 @@ public class Order {
         status = a;
     }
 
-    public List getList() {
+    public List<Product> getList() {
         return productList;
     }
 
-    public void setList(List a) {
+    public void setList(List<Product> a) {
         productList = a;
     }
 }
