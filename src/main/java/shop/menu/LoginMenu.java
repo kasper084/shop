@@ -23,9 +23,17 @@ public class LoginMenu implements Menu {
         options.add("0. Exit");
     }
 
-    public void getLoginAndPassword() {
+    public void getEmail() {
         System.out.println("Enter email");
         email = scanner.nextLine();
+        if (!isEmailValid(email)) {
+            System.out.println("Invalid email");
+            getEmail();
+        }
+    }
+
+    public void getLoginAndPassword() {
+        getEmail();
         System.out.println("Enter password");
         password = scanner.nextLine();
     }
@@ -36,6 +44,11 @@ public class LoginMenu implements Menu {
         name = scanner.nextLine();
         System.out.println("Enter phone number");
         phoneNumber = scanner.nextLine();
+    }
+
+    public static boolean isEmailValid(String email) {
+        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
     }
 
     @Override
@@ -50,11 +63,15 @@ public class LoginMenu implements Menu {
                     getLoginAndPassword();
                     if (userService.login(email, password)) {
                         userService.getMenu();
-                    } else {}
+                    } else {
+                        System.out.println("Invalid. Try again or register");
+                        showOptions(options);
+                    }
                     break;
                 case 2:
                     getUserInfo();
                     userService.registerUser(email, password, name, phoneNumber);
+                    userService.putNewUser();
                 case 0:
                     close();
                     break;
