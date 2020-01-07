@@ -7,6 +7,4 @@ public interface UserService {
     boolean isExist(String username);
 
     void registerUser(String email, String password, String name, String phone);
-
-    void getMenu();
 }

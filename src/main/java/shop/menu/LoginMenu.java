@@ -1,7 +1,9 @@
 package shop.menu;
 
 import shop.menu.user.UserMenu;
+import shop.service.AdminService;
 import shop.service.UserService;
+import shop.service.impl.AdminServiceImpl;
 import shop.service.impl.UserServiceImpl;
 
 import java.util.ArrayList;
@@ -10,13 +12,16 @@ import java.util.Scanner;
 
 public class LoginMenu implements Menu {
     private CredentialsMenu credentials = new CredentialsMenu();
+    private AdminService adminService = new AdminServiceImpl();
     private UserService userService = new UserServiceImpl();
     private List<String> options = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
+
     public void addOptions() {
         options.add("1. Login");
-        options.add("2. Register user");
+        options.add("2. Login as Admin");
+        options.add("3. Register user");
         options.add("0. Exit");
     }
 
@@ -31,13 +36,16 @@ public class LoginMenu implements Menu {
                 case 1:
                     if (userService.login(credentials.getEmail(),
                             credentials.getPassword())) {
-                        userService.getMenu();
+                        new UserMenu().show();
                     } else {
                         System.out.println("Try again or register");
                         showOptions(options);
                     }
                     break;
                 case 2:
+                    //adminService.login();
+                    break;
+                case 3:
                     userService.registerUser(credentials.getEmail(),
                             credentials.getPassword(),
                             credentials.getName(),
