@@ -81,7 +81,6 @@ public class LoginMenu implements Menu {
                 case 2:
                     getUserInfo();
                     userService.registerUser(email, password, name, phoneNumber);
-                    userService.putNewUser();
                     showOptions(options);
                 case 0:
                     close();

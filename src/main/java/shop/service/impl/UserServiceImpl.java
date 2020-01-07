@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public void getMenu() {
-       if (isAdmin()) new AdminMenu().show();
-       else new UserMenu().show();
+        if (isAdmin()) new AdminMenu().show();
+        else new UserMenu().show();
     }
 
     public void registerUser(String email, String password, String name, String phoneNumber) {
@@ -42,9 +42,10 @@ public class UserServiceImpl implements UserService {
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
         user.setRole(UserRole.USER);
+        putNewUser();
     }
 
-    public void putNewUser() {
+    private void putNewUser() {
         userRepository.saveUser(user);
     }
 }
