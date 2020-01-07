@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String email, String password) {
-        // waiting for dao
-        return false;
+        if (userRepository.getUser(email, password).isEmpty()) return false;
+        return true;
     }
 
     @Override

@@ -5,7 +5,7 @@ import shop.entity.User;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 public class UserRepository implements UserDAO {
     private Map<String, User> userMap = new HashMap<>();
@@ -17,7 +17,6 @@ public class UserRepository implements UserDAO {
 
     @Override
     public void updateUser() {
-
     }
 
     @Override
@@ -26,7 +25,10 @@ public class UserRepository implements UserDAO {
     }
 
     @Override
-    public void getUser() {
+    public Optional<User> getUser(String email, String password) {
+        return userMap.values().stream()
+                 .filter(user -> user.getEmail().equals(email)
+                 && user.getPassword().equals(password))
+                .findFirst();
     }
-
 }

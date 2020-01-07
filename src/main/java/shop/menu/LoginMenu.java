@@ -1,7 +1,5 @@
 package shop.menu;
 
-import shop.menu.admin.AdminMenu;
-import shop.menu.user.UserMenu;
 import shop.service.impl.UserServiceImpl;
 
 import java.util.ArrayList;
@@ -27,26 +25,38 @@ public class LoginMenu implements Menu {
         System.out.println("Enter email");
         email = scanner.nextLine();
         if (!isEmailValid(email)) {
-            System.out.println("Invalid email");
+            System.out.println("Invalid");
             getEmail();
         }
     }
 
-    public void getLoginAndPassword() {
-        getEmail();
+    public void getPassword() {
         System.out.println("Enter password");
         password = scanner.nextLine();
     }
 
-    public void getUserInfo() {
-        getLoginAndPassword();
+    public void getLoginAndPassword() {
+        getEmail();
+        getPassword();
+    }
+
+    public void getName() {
         System.out.println("Enter name");
         name = scanner.nextLine();
+    }
+
+    public void getPhone() {
         System.out.println("Enter phone number");
         phoneNumber = scanner.nextLine();
     }
 
-    public static boolean isEmailValid(String email) {
+    public void getUserInfo() {
+        getLoginAndPassword();
+        getName();
+        getPhone();
+    }
+
+    public boolean isEmailValid(String email) {
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
@@ -64,7 +74,7 @@ public class LoginMenu implements Menu {
                     if (userService.login(email, password)) {
                         userService.getMenu();
                     } else {
-                        System.out.println("Invalid. Try again or register");
+                        System.out.println("Try again or register");
                         showOptions(options);
                     }
                     break;
@@ -72,6 +82,7 @@ public class LoginMenu implements Menu {
                     getUserInfo();
                     userService.registerUser(email, password, name, phoneNumber);
                     userService.putNewUser();
+                    showOptions(options);
                 case 0:
                     close();
                     break;
