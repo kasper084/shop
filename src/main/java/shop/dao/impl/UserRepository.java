@@ -27,8 +27,8 @@ public class UserRepository implements UserDAO {
     @Override
     public Optional<User> getUser(String email, String password) {
         return userMap.values().stream()
-                 .filter(user -> user.getEmail().equals(email)
-                 && user.getPassword().equals(password))
+                .filter(user -> user.getEmail().equals(email)
+                        && user.getPassword().equals(password))
                 .findFirst();
     }
 }

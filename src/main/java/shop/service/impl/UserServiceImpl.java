@@ -22,10 +22,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registered (String email, String password) {
+    public boolean registered(String email, String password) {
         return userRepository.getUser(email, password).isEmpty();
     }
-
 
     private boolean isAdmin() {
         //need better solution
@@ -54,10 +53,11 @@ public class UserServiceImpl implements UserService {
     public String getEmail() {
         System.out.println("Enter email");
         String email = scanner.nextLine();
-        if (!isEmailValid(email)){
+        if (!isEmailValid(email)) {
             System.out.println("Invalid");
             getEmail();
-        } return email;
+        }
+        return email;
     }
 
     public String getPassword() {
@@ -78,10 +78,8 @@ public class UserServiceImpl implements UserService {
         return phoneNumber;
     }
 
-
     public boolean isEmailValid(String email) {
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
-
 }
