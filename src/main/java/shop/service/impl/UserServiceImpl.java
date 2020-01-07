@@ -16,8 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String email, String password) {
-        if (userRepository.getUser(email, password).isEmpty()) return false;
-        return true;
+        return userRepository.getUser(email, password).isEmpty();
     }
 
     @Override
@@ -25,8 +24,7 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    public boolean isAdmin() {
-
+    private boolean isAdmin() {
         return false;
     }
 

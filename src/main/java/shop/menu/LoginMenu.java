@@ -21,39 +21,39 @@ public class LoginMenu implements Menu {
         options.add("0. Exit");
     }
 
-    public void getEmail() {
+    public void getEmail(Scanner scanner) {
         System.out.println("Enter email");
         email = scanner.nextLine();
         if (!isEmailValid(email)) {
             System.out.println("Invalid");
-            getEmail();
+            getEmail(scanner);
         }
     }
 
-    public void getPassword() {
+    public void getPassword(Scanner scanner) {
         System.out.println("Enter password");
         password = scanner.nextLine();
     }
 
     public void getLoginAndPassword() {
-        getEmail();
-        getPassword();
+        getEmail(scanner);
+        getPassword(scanner);
     }
 
-    public void getName() {
+    public void getName(Scanner scanner) {
         System.out.println("Enter name");
         name = scanner.nextLine();
     }
 
-    public void getPhone() {
+    public void getPhone(Scanner scanner) {
         System.out.println("Enter phone number");
         phoneNumber = scanner.nextLine();
     }
 
     public void getUserInfo() {
         getLoginAndPassword();
-        getName();
-        getPhone();
+        getName(scanner);
+        getPhone(scanner);
     }
 
     public boolean isEmailValid(String email) {
