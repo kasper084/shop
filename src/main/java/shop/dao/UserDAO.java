@@ -11,7 +11,9 @@ public interface UserDAO {
 
     void deleteUser();
 
-    default Optional<User> getUser(String email, String password) {
+    boolean isExist(String email);
+
+    default Optional<User> getUser(String email) {
         return Optional.empty();
     }
 }

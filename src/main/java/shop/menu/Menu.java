@@ -10,8 +10,8 @@ public interface Menu {
 
     void close();
 
-    default void showOptions (List<?> options) {
-        for (Object option: options) {
+    default void showOptions(List<?> options) {
+        for (Object option : options) {
             System.out.println(option);
         }
     }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class UserRepository implements UserDAO {
+public class UserDAOImpl implements UserDAO {
     private Map<String, User> userMap = new HashMap<>();
 
     @Override
@@ -25,10 +25,14 @@ public class UserRepository implements UserDAO {
     }
 
     @Override
-    public Optional<User> getUser(String email, String password) {
+    public boolean isExist(String email) {
+        return getUser(email).isPresent();
+    }
+
+    @Override
+    public Optional<User> getUser(String email) {
         return userMap.values().stream()
-                .filter(user -> user.getEmail().equals(email)
-                        && user.getPassword().equals(password))
+                .filter(user -> user.getEmail().equals(email))
                 .findFirst();
     }
 }

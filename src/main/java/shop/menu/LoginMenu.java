@@ -1,6 +1,7 @@
 package shop.menu;
 
 import shop.menu.user.UserMenu;
+import shop.service.UserService;
 import shop.service.impl.UserServiceImpl;
 
 import java.util.ArrayList;
@@ -8,7 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LoginMenu implements Menu {
-    private UserServiceImpl userService = new UserServiceImpl();
+    private CredentialsMenu credentials = new CredentialsMenu();
+    private UserService userService = new UserServiceImpl();
     private List<String> options = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
@@ -27,8 +29,8 @@ public class LoginMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    if (!userService.login(userService.getEmail(),
-                            userService.getPassword())) {
+                    if (userService.login(credentials.getEmail(),
+                            credentials.getPassword())) {
                         userService.getMenu();
                     } else {
                         System.out.println("Try again or register");
@@ -36,10 +38,10 @@ public class LoginMenu implements Menu {
                     }
                     break;
                 case 2:
-                    userService.registerUser(userService.getEmail(),
-                            userService.getPassword(),
-                            userService.getName(),
-                            userService.getPhone());
+                    userService.registerUser(credentials.getEmail(),
+                            credentials.getPassword(),
+                            credentials.getName(),
+                            credentials.getPhone());
                     new UserMenu().show();
                 case 0:
                     close();
