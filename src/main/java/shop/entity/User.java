@@ -1,51 +1,61 @@
 package shop.entity;
 
+import shop.enums.UserRole;
+
 public class User {
     private String id;
     private String name;
     private String email;
     private String phoneNumber;
     private String password;
+    private UserRole role;
 
     public String getName() {
         return name;
     }
 
-    public void setName(String a) {
-        name = a;
+    public void setName(String name) {
+       this.name = name;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String a) {
-        id = a;
+    public void setId(String id) {
+        this.id = id;
     }
-
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String a) {
-        email = a;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setpassword(String a) {
-        password = a;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String a) {
-        phoneNumber = a;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }
 
