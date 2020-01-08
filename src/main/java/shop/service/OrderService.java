@@ -1,5 +1,9 @@
 package shop.service;
 
+import shop.entity.Order;
+
+import java.util.List;
+
 public interface OrderService {
 
     void addProductToOrder(String productId);

@@ -1,5 +1,9 @@
 package shop.service;
 
+import shop.entity.Product;
+
+import java.util.List;
+
 public interface ProductService {
 
     void getProduct(String productId);
