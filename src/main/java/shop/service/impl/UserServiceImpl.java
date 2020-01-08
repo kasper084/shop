@@ -6,6 +6,7 @@ import shop.entity.User;
 import shop.enums.UserRole;
 import shop.service.UserService;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
@@ -13,7 +14,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String email, String password) {
-        return isExist(email);
+        Optional<User> optUser = userDAO.findUser(email);
+        return optUser.map(user -> user.getPassword().equals(password)).orElse(false);
     }
 
     @Override

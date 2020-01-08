@@ -9,7 +9,7 @@ public class CredentialsMenu {
         System.out.println("Enter email");
         String email = scanner.nextLine();
         if (!isEmailValid(email)) {
-            System.out.println("Invalid");
+            System.out.println("Invalid format. Try again");
             getEmail();
         }
         return email;

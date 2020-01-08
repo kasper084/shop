@@ -26,11 +26,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean isExist(String email) {
-        return getUser(email).isPresent();
+        return findUser(email).isPresent();
     }
 
     @Override
-    public Optional<User> getUser(String email) {
+    public Optional<User> findUser(String email) {
         return userMap.values().stream()
                 .filter(user -> user.getEmail().equals(email))
                 .findFirst();

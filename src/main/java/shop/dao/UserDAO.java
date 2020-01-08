@@ -13,7 +13,7 @@ public interface UserDAO {
 
     boolean isExist(String email);
 
-    default Optional<User> getUser(String email) {
+    default Optional<User> findUser(String email) {
         return Optional.empty();
     }
 }
