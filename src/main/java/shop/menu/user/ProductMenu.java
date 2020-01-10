@@ -1,6 +1,8 @@
 package shop.menu.user;
 
 import shop.menu.Menu;
+import shop.service.ProductService;
+import shop.service.impl.ProductServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.Scanner;
 public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    //privet ProductService productService = new ProductService();
+    private ProductService productService = new ProductServiceImpl();
     //privet OrderService orderService = new OrderService();
 
     @Override
@@ -30,10 +32,10 @@ public class ProductMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    //productService.showProductList();
+                    System.out.println(productService.getAllProducts());
                     break;
                 case 2:
-                    //productService.getProduct(name);
+                    productService.getProductByName(scanner.nextLine());
                     break;
                 case 3:
                     //orderService.addSpecificProduct(productId);
