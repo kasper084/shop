@@ -10,9 +10,7 @@ public interface ProductService {
 
     void getProductByName (String productName);
 
-    //List<Product> getAllProducts();
-
-   void getAllProducts();
+    void getAllProducts();
 
     void addNewProduct(String productId, String name, Double price);
 
