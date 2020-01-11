@@ -5,17 +5,21 @@ import shop.dao.impl.UserDAOImpl;
 import shop.entity.User;
 import shop.enums.UserRole;
 import shop.service.UserService;
+import shop.utils.PasswordEncoder;
 
 import java.util.Optional;
 import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
+    private PasswordEncoder passwordEncoder = new PasswordEncoder();
     private UserDAO userDAO = new UserDAOImpl();
 
     @Override
     public boolean login(String email, String password) {
         Optional<User> optUser = userDAO.findUser(email);
-        return optUser.map(user -> user.getPassword().equals(password)).orElse(false);
+        return optUser.map(user -> user.getPassword()
+                .equals(passwordEncoder.decode(password)))
+                .orElse(false);
     }
 
     @Override
@@ -27,7 +31,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
         user.setRole(UserRole.USER);
