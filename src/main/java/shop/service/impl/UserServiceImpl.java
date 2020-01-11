@@ -11,14 +11,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
-    private PasswordEncoder passwordEncoder = new PasswordEncoder();
     private UserDAO userDAO = new UserDAOImpl();
 
     @Override
     public boolean login(String email, String password) {
         Optional<User> optUser = userDAO.findUser(email);
         return optUser.map(user -> user.getPassword()
-                .equals(passwordEncoder.decode(password)))
+                .equals(PasswordEncoder.decode(password)))
                 .orElse(false);
     }
 
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(PasswordEncoder.encode(password));
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
         user.setRole(UserRole.USER);
