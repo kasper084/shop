@@ -10,11 +10,11 @@ public class ProductDAOImpl implements ProductDAO {
     private Map<String, Product> productMap = new HashMap<>();
 
     @Override
-    public Optional<Product> findProductByName(String name) {
+    public Product findProductByName(String name) {
         return productMap.values()
                 .stream()
-                .filter(product -> product.getName().equals(name))
-                .findFirst();
+                .filter(product -> product.getName().equalsIgnoreCase(name))
+                .findFirst().orElse(null);
     }
 
     @Override

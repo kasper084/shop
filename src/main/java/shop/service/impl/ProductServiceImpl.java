@@ -13,15 +13,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void getProductByName(String name) {
-        Optional<Product> product = productDAO.findProductByName(name);
-        if (product.isPresent()) System.out.println(product);
-        else System.out.println("No products found");
+       Product product = productDAO.findProductByName(name);
+        if (product!=null) System.out.println(product);
+        else System.out.println("No products were found");
     }
 
     @Override
     public void getAllProducts() {
-        List<Product> products = productDAO.findAll();
-        System.out.println(products);
+       for (Product product : productDAO.findAll()) {
+         System.out.println(product);
+        }
     }
 
     @Override

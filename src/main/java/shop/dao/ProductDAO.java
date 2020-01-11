@@ -9,7 +9,6 @@ public interface ProductDAO {
 
     List<Product> findAll();
 
-    default Optional<Product> findProductByName(String name) {
-        return Optional.empty();
-    }
+   Product findProductByName(String name);
+
 }
