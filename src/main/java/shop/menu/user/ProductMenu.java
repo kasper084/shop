@@ -1,5 +1,6 @@
 package shop.menu.user;
 
+import shop.entity.Product;
 import shop.menu.Menu;
 import shop.service.ProductService;
 import shop.service.impl.ProductServiceImpl;
@@ -32,10 +33,15 @@ public class ProductMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    productService.getAllProducts();
+                    for (Product product : productService.getAllProducts()) {
+                        System.out.println(product);
+                    }
+                    if (productService.getAllProducts().isEmpty()) {
+                        System.out.println("Products list is empty");
+                    }
                     break;
                 case 2:
-                    productService.getProductByName(scanner.nextLine());
+                    System.out.println(productService.getProductByName(scanner.nextLine()));
                     break;
                 case 3:
                     //orderService.addSpecificProduct(productId);

@@ -9,6 +9,6 @@ public interface ProductDAO {
 
     List<Product> findAll();
 
-   Product findProductByName(String name);
+   Optional<Product> findProductByName(String name);
 
 }
