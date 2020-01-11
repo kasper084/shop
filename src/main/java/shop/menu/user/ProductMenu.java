@@ -32,7 +32,7 @@ public class ProductMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println(productService.getAllProducts());
+                    productService.getAllProducts();
                     break;
                 case 2:
                     productService.getProductByName(scanner.nextLine());

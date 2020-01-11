@@ -1,25 +1,27 @@
 package shop.service.impl;
 
+import shop.dao.ProductDAO;
+import shop.dao.impl.ProductDAOImpl;
 import shop.entity.Product;
 import shop.service.ProductService;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
 
-    private Map<String, Product> productMap = new HashMap<>();
+    private ProductDAO productDAO = new ProductDAOImpl();
 
-    public Product getProductByName(String name) {
-      return productMap.entrySet()
-              .stream()
-              .filter(map -> map.getKey().equalsIgnoreCase(name))
-              .findFirst().orElseThrow(() -> new NoSuchElementException("No product found")).getValue();
+    @Override
+    public void getProductByName(String name) {
+        Optional<Product> product = productDAO.findProductByName(name);
+        if (product.isPresent()) System.out.println(product);
+        else System.out.println("No products found");
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        return productMap.values().stream().collect(Collectors.toList());
+    public void getAllProducts() {
+        List<Product> products = productDAO.findAll();
+        System.out.println(products);
     }
 
     @Override
