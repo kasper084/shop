@@ -1,15 +1,19 @@
 package shop.menu.user;
 
+import shop.entity.Product;
 import shop.menu.Menu;
+import shop.service.ProductService;
+import shop.service.impl.ProductServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    //privet ProductService productService = new ProductService();
+    private ProductService productService = new ProductServiceImpl();
     //privet OrderService orderService = new OrderService();
 
     @Override
@@ -30,10 +34,19 @@ public class ProductMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    //productService.showProductList();
+                    for (Product product : productService.getAllProducts()) {
+                        System.out.println(product);
+                    }
+                    if (productService.getAllProducts().isEmpty()) {
+                        System.out.println("Products list is empty");
+                    }
                     break;
                 case 2:
-                    //productService.getProduct(name);
+                    try {
+                        System.out.println(productService.getProductByName(scanner.nextLine()));
+                    } catch (NoSuchElementException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 3:
                     //orderService.addSpecificProduct(productId);

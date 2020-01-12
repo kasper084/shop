@@ -8,6 +8,8 @@ public interface ProductService {
 
     void getProduct(String productId);
 
+    Product getProductByName (String productName);
+
     List<Product> getAllProducts();
 
     void addNewProduct(String productId, String name, Double price);
