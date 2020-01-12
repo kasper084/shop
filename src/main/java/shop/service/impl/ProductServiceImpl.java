@@ -12,17 +12,14 @@ public class ProductServiceImpl implements ProductService {
     private ProductDAO productDAO = new ProductDAOImpl();
 
     @Override
-    public void getProductByName(String name) {
-       Product product = productDAO.findProductByName(name);
-        if (product!=null) System.out.println(product);
-        else System.out.println("No products were found");
+    public Product getProductByName(String name) {
+        return productDAO.findProductByName(name)
+                .orElseThrow(() -> new NoSuchElementException("No product found"));
     }
 
     @Override
-    public void getAllProducts() {
-       for (Product product : productDAO.findAll()) {
-         System.out.println(product);
-        }
+    public List<Product> getAllProducts() {
+        return productDAO.findAll();
     }
 
     @Override

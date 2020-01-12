@@ -7,6 +7,7 @@ import shop.service.impl.ProductServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ProductMenu implements Menu {
@@ -41,7 +42,11 @@ public class ProductMenu implements Menu {
                     }
                     break;
                 case 2:
-                    System.out.println(productService.getProductByName(scanner.nextLine()));
+                    try {
+                        System.out.println(productService.getProductByName(scanner.nextLine()));
+                    } catch (NoSuchElementException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 3:
                     //orderService.addSpecificProduct(productId);
