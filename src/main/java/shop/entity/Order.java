@@ -8,7 +8,7 @@ public class Order {
     private String status;
     private List<Product> productList;
 
-    public String getUserid() {
+    public String getUserId() {
         return userid;
     }
 
@@ -24,7 +24,6 @@ public class Order {
         id = a;
     }
 
-
     public String getStatus() {
         return status;
     }
@@ -35,6 +34,10 @@ public class Order {
 
     public List<Product> getList() {
         return productList;
+    }
+
+    public void addList(Product product){
+        productList.add(product);
     }
 
     public void setList(List<Product> a) {

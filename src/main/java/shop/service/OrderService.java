@@ -10,11 +10,12 @@ public interface OrderService {
 
     void  getOrder(String orderId);
 
+    // for user
     List<Order> getAllOrdersForUser(String usersId);
 
-    void checkout(String orderId);
-
+    // for admin
     void confirmOrder(String orderId);
 
-    void deleteOrder(String orderId);
+    // for user
+    void checkoutOrder(Order order);
 }
