@@ -24,24 +24,33 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void blockUser(String userEmail) {
-        changeUserStatus(userEmail, UserStatus.BLOCKED);
+    public boolean blockUser(String userEmail) {
+        if (userService.isExist(userEmail)) {
+            changeUserStatus(userEmail, UserStatus.BLOCKED);
+            return true;
+        } else return false;
     }
 
     @Override
-    public void unblockUser(String userEmail) {
-        changeUserStatus(userEmail, UserStatus.ACTIVE);
+    public boolean unblockUser(String userEmail) {
+        if (userService.isExist(userEmail)) {
+            changeUserStatus(userEmail, UserStatus.ACTIVE);
+            return true;
+        } else return false;
     }
 
     @Override
-    public void deleteUser(String userEmail) {
-        User user = getUser(userEmail);
-        userService.deleteUser(user);
+    public boolean deleteUser(String userEmail) {
+        if (userService.isExist(userEmail)) {
+            User user = getUser(userEmail);
+            userService.deleteUser(user);
+            return true;
+        } else return false;
     }
 
     @Override
     public List<String> getActiveUsers() {
-       return userService.getInactiveUsers();
+        return userService.getInactiveUsers();
     }
 
     @Override
@@ -55,7 +64,6 @@ public class AdminServiceImpl implements AdminService {
                 .map(User::getEmail).collect(Collectors.toList());
     }
 
-
     private void changeUserStatus(String userEmail, UserStatus status) {
         User user = getUser(userEmail);
         user.setStatus(status);
@@ -66,7 +74,6 @@ public class AdminServiceImpl implements AdminService {
         return userService.findUser(userEmail)
                 .orElseThrow(() -> new IllegalArgumentException("User with such email not found"));
     }
-
 
     public void confirmOrder(String orderId) {
         orderService.confirmOrder(orderId);

@@ -13,8 +13,8 @@ public class AdminMenu implements Menu {
     @Override
     public void addOptions() {
         options.add("1. Block/Unblock/Delete user");
-        options.add("3. Order menu");
-        options.add("4. Products menu");
+        options.add("2. Order menu");
+        options.add("3. Products menu");
         options.add("0. Exit");
     }
 

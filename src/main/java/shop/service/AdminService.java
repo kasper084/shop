@@ -6,11 +6,11 @@ public interface AdminService {
 
     boolean login(String email, String password);
 
-    void blockUser(String userId);
+    boolean blockUser(String userId);
 
-    void unblockUser(String userId);
+    boolean unblockUser(String userId);
 
-    void deleteUser(String userEmail);
+    boolean deleteUser(String userEmail);
 
     List<String> getActiveUsers();
 

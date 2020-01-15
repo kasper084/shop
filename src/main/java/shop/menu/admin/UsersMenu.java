@@ -34,16 +34,34 @@ public class UsersMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        System.out.println(adminService.getActiveUsers());
-                        adminService.blockUser(credentialsMenu.getEmail());
+                        System.out.printf("Blocked Users: \n%s%n",
+                                adminService.getActiveUsers());
+                        if (adminService.blockUser(credentialsMenu.getEmail())) {
+                            System.out.println("User was blocked");
+                        } else {
+                            System.out.println("No user found. Try again");
+                            showOptions(options);
+                        }
                         break;
                     case 2:
-                        System.out.println(adminService.getInactiveUsers());
-                        adminService.unblockUser(credentialsMenu.getEmail());
+                        System.out.printf("Blocked Users: \n%s%n",
+                                adminService.getInactiveUsers());
+                        if (adminService.unblockUser(credentialsMenu.getEmail())) {
+                            System.out.println("User was unblocked");
+                        } else {
+                            System.out.println("No user found. Try again");
+                            showOptions(options);
+                        }
                         break;
                     case 3:
-                        System.out.println(adminService.getAllUsers());
-                        adminService.deleteUser(credentialsMenu.getEmail());
+                        System.out.printf("All suers: \n%s%n",
+                                adminService.getAllUsers());
+                        if (adminService.deleteUser(credentialsMenu.getEmail())) {
+                            System.out.println("User was deleted");
+                        } else {
+                            System.out.println("No user found. Try again");
+                            showOptions(options);
+                        }
                     case 0:
                         close();
                         break;
