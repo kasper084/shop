@@ -27,7 +27,7 @@ public class AdminMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    new BlockMenu().show();
+                    new UsersMenu().show();
                     break;
                 case 2:
                     new OrderMenu().show();

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BlockMenu implements Menu {
+public class UsersMenu implements Menu {
     private CredentialsMenu credentialsMenu = new CredentialsMenu();
     private AdminService adminService = new AdminServiceImpl();
     private Scanner scanner = new Scanner(System.in);
@@ -34,12 +34,15 @@ public class BlockMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
+                        System.out.println(adminService.getActiveUsers());
                         adminService.blockUser(credentialsMenu.getEmail());
                         break;
                     case 2:
+                        System.out.println(adminService.getInactiveUsers());
                         adminService.unblockUser(credentialsMenu.getEmail());
                         break;
                     case 3:
+                        System.out.println(adminService.getAllUsers());
                         adminService.deleteUser(credentialsMenu.getEmail());
                     case 0:
                         close();

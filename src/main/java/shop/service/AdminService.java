@@ -1,5 +1,7 @@
 package shop.service;
 
+import java.util.List;
+
 public interface AdminService {
 
     boolean login(String email, String password);
@@ -9,4 +11,10 @@ public interface AdminService {
     void unblockUser(String userId);
 
     void deleteUser(String userEmail);
+
+    List<String> getActiveUsers();
+
+    List<String> getInactiveUsers();
+
+    List<String> getAllUsers();
 }

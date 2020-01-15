@@ -47,7 +47,7 @@ public class LoginMenu implements Menu {
                             credentialsMenu.getPassword())) {
                         new AdminMenu().show();
                     } else {
-                        System.out.println("No such admin");
+                        System.out.println("Invalid credentials. Try again");
                         showOptions(options);
                     }
                     break;

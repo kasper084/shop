@@ -2,6 +2,7 @@ package shop.dao;
 
 import shop.entity.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserDAO {
@@ -12,6 +13,8 @@ public interface UserDAO {
     void updateUser(User user);
 
     boolean isExist(String email);
+
+    List<User> findAll();
 
     default Optional<User> findUser(String email) {
         return Optional.empty();
