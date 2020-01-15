@@ -2,16 +2,12 @@ package shop.service.impl;
 
 import shop.dao.AdminDAO;
 import shop.dao.impl.AdminDAOImpl;
-import shop.entity.Admin;
 import shop.entity.User;
 import shop.enums.UserStatus;
 import shop.service.AdminService;
 import shop.service.OrderService;
 import shop.service.ProductService;
 import shop.service.UserService;
-import shop.utils.PasswordEncoder;
-
-import java.util.Optional;
 
 public class AdminServiceImpl implements AdminService {
     private ProductService productService = new ProductServiceImpl();
@@ -21,20 +17,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean login(String email, String password) {
-        Optional<Admin> optUser = adminDAO.findAdmin(email);
-        return optUser.map(admin -> admin.getPassword()
-                .equals(PasswordEncoder.decode(password)))
-                .orElse(false);
-    }
-
-    @Override
-    public boolean isExist(String email) {
-        return adminDAO.isExist(email);
-    }
-
-    @Override
-    public Optional<Admin> findAdmin(String email) {
-        return adminDAO.findAdmin(email);
+        adminDAO.login(email, password);
+        return true;
     }
 
     @Override
