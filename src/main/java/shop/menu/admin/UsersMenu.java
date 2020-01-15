@@ -15,7 +15,6 @@ public class UsersMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
 
-
     @Override
     public void addOptions() {
         options.add("1. Block user");
