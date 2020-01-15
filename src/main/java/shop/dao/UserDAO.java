@@ -7,9 +7,9 @@ import java.util.Optional;
 public interface UserDAO {
     void saveUser(User user);
 
-    void updateUser();
+    void deleteUser(User user);
 
-    void deleteUser();
+    void updateUser(User user);
 
     boolean isExist(String email);
 

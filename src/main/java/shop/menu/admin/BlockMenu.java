@@ -1,20 +1,26 @@
 package shop.menu.admin;
 
+import shop.menu.CredentialsMenu;
 import shop.menu.Menu;
+import shop.service.AdminService;
+import shop.service.impl.AdminServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BlockMenu implements Menu {
+    private CredentialsMenu credentialsMenu = new CredentialsMenu();
+    private AdminService adminService = new AdminServiceImpl();
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    //privet UserService userService = newUserService();
+
 
     @Override
     public void addOptions() {
         options.add("1. Block user");
         options.add("2. Unblock user");
+        options.add("3. Delete user");
         options.add("0. Go back");
     }
 
@@ -24,20 +30,27 @@ public class BlockMenu implements Menu {
         showOptions(options);
 
         while (true) {
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    //userService.blockUser(userId);
-                    break;
-                case 2:
-                    //userService.unblockUser(userId)
-                    break;
-                case 0:
-                    close();
-                    break;
-                default:
-                    showOptions(options);
-                    break;
+            try {
+                int choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        adminService.blockUser(credentialsMenu.getEmail());
+                        break;
+                    case 2:
+                        adminService.unblockUser(credentialsMenu.getEmail());
+                        break;
+                    case 3:
+                        adminService.deleteUser(credentialsMenu.getEmail());
+                    case 0:
+                        close();
+                        break;
+                    default:
+                        showOptions(options);
+                        break;
+                }
+            } catch (IllegalArgumentException i) {
+                System.out.println(i.getMessage() + "\n");
+                showOptions(options);
             }
         }
     }

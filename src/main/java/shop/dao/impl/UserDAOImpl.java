@@ -15,18 +15,20 @@ public class UserDAOImpl implements UserDAO {
         userMap.put(user.getId(), user);
     }
 
-    @Override
-    public void updateUser() {
-    }
 
     @Override
-    public void deleteUser() {
-
+    public void deleteUser(User user) {
+        userMap.remove(user.getId(), user);
     }
 
     @Override
     public boolean isExist(String email) {
         return findUser(email).isPresent();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        saveUser(user);
     }
 
     @Override

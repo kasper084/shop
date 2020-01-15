@@ -4,6 +4,7 @@ import shop.dao.UserDAO;
 import shop.dao.impl.UserDAOImpl;
 import shop.entity.User;
 import shop.enums.UserRole;
+import shop.enums.UserStatus;
 import shop.service.UserService;
 import shop.utils.PasswordEncoder;
 
@@ -34,7 +35,23 @@ public class UserServiceImpl implements UserService {
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
         user.setRole(UserRole.USER);
+        user.setStatus(UserStatus.ACTIVE);
         if (!isExist(email)) save(user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDAO.updateUser(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userDAO.deleteUser(user);
+    }
+
+    @Override
+    public Optional<User> findUser(String email) {
+        return userDAO.findUser(email);
     }
 
     private void save(User user) {

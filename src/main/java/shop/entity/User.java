@@ -1,6 +1,7 @@
 package shop.entity;
 
 import shop.enums.UserRole;
+import shop.enums.UserStatus;
 
 public class User {
     private String id;
@@ -9,13 +10,14 @@ public class User {
     private String phoneNumber;
     private String password;
     private UserRole role;
+    private UserStatus status;
 
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-       this.name = name;
+        this.name = name;
     }
 
     public String getId() {
@@ -57,5 +59,12 @@ public class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
-}
 
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+}
