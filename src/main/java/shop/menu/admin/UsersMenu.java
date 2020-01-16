@@ -35,32 +35,20 @@ public class UsersMenu implements Menu {
                     case 1:
                         System.out.printf("Blocked Users: \n%s%n",
                                 adminService.getActiveUsers());
-                        if (adminService.blockUser(credentialsMenu.getEmail())) {
-                            System.out.println("User was blocked");
-                        } else {
-                            System.out.println("No user found. Try again");
-                            showOptions(options);
-                        }
+                        adminService.blockUser(credentialsMenu.getEmail());
+                        System.out.println("User was blocked");
                         break;
                     case 2:
                         System.out.printf("Blocked Users: \n%s%n",
                                 adminService.getInactiveUsers());
-                        if (adminService.unblockUser(credentialsMenu.getEmail())) {
-                            System.out.println("User was unblocked");
-                        } else {
-                            System.out.println("No user found. Try again");
-                            showOptions(options);
-                        }
+                        adminService.unblockUser(credentialsMenu.getEmail());
+                                System.out.println("User was unblocked");
                         break;
                     case 3:
                         System.out.printf("All suers: \n%s%n",
                                 adminService.getAllUsers());
-                        if (adminService.deleteUser(credentialsMenu.getEmail())) {
-                            System.out.println("User was deleted");
-                        } else {
-                            System.out.println("No user found. Try again");
-                            showOptions(options);
-                        }
+                        adminService.deleteUser(credentialsMenu.getEmail());
+                                System.out.println("User was deleted");
                     case 0:
                         close();
                         break;
