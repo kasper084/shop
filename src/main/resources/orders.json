@@ -2,9 +2,7 @@
   {
     "id": "12",
     "userId": "11",
-    "status": {
-      "orderStatus": "PENDING"
-    },
+    "status": "PENDING",
     "productList": [
       {
         "id": "6",
@@ -17,9 +15,7 @@
   {
     "id": "13",
     "userId": "245",
-    "status": {
-      "orderStatus": "CONFIRMED"
-    },
+    "status": "CONFIRMED",
     "productList": [
       {
         "id": "5",
@@ -32,9 +28,7 @@
   {
     "id": "14",
     "userId": "317",
-    "status": {
-      "orderStatus": "CANCELED"
-    },
+    "status": "CANCELED",
     "productList": [
       {
         "id": "4",
