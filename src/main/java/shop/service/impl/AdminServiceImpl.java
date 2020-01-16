@@ -26,13 +26,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void blockUser(String userEmail) throws IllegalArgumentException {
         changeUserStatus(userEmail, UserStatus.BLOCKED);
-
     }
 
     @Override
     public void unblockUser(String userEmail) throws IllegalArgumentException {
         changeUserStatus(userEmail, UserStatus.ACTIVE);
-
     }
 
     @Override
