@@ -5,8 +5,12 @@
     "email": "david@mail.com",
     "phoneNumber": "5555555",
     "password": "cGFzMQ==",
-    "role": {"userRole": "USER"},
-    "status":{"userStatus": "ACTIVE"}
+    "role": {
+      "userRole": "USER"
+    },
+    "status": {
+      "userStatus": "ACTIVE"
+    }
   },
   {
     "id": "317",
@@ -14,8 +18,12 @@
     "email": "john@mail.com",
     "phoneNumber": "6666666",
     "password": "cGFzMg==",
-    "role": {"userRole": "USER"},
-    "status":{"userStatus": "ACTIVE"}
+    "role": {
+      "userRole": "USER"
+    },
+    "status": {
+      "userStatus": "ACTIVE"
+    }
   },
   {
     "id": "11",
@@ -23,7 +31,11 @@
     "email": "vlad@mail.com",
     "phoneNumber": "7777777",
     "password": "cGFzMw==",
-    "role": {"userRole": "USER"},
-    "status":{"userStatus": "ACTIVE"}
+    "role": {
+      "userRole": "USER"
+    },
+    "status": {
+      "userStatus": "ACTIVE"
+    }
   }
 ]
