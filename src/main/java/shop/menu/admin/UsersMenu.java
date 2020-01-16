@@ -61,7 +61,7 @@ public class UsersMenu implements Menu {
                 System.out.println(i.getMessage() + "\n");
                 showOptions(options);
             } catch (InputMismatchException i) {
-                System.out.println("Nope, enter number");
+                System.out.println("Please choose the number from the menu");
                 new UsersMenu().show();
             }
         }

@@ -6,15 +6,15 @@ public class CredentialsMenu {
     private Scanner scanner = new Scanner(System.in);
 
     public String getEmail() {
-        int typo = 0;
+        int retryCount = 3;
         System.out.println("Enter email");
         String email = scanner.nextLine();
         while (!isEmailValid(email)) {
-            typo++;
-            if (typo <= 2) {
+            retryCount--;
+            if (retryCount != 0) {
                 System.out.println("Invalid format. Try again" +
                         "\nNumber of tries left:"
-                        + (3 - typo));
+                        + retryCount);
                 email = scanner.nextLine();
             } else {
                 System.out.println("Hey! Email format isn't right");

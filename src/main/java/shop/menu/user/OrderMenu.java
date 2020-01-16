@@ -39,7 +39,7 @@ public class OrderMenu implements Menu {
                 }
             }
         } catch (InputMismatchException i) {
-            System.out.println("Nope, enter number");
+            System.out.println("Please choose the number from the menu");
             new OrderMenu().show();
         }
     }

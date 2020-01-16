@@ -46,7 +46,7 @@ public class AdminMenu implements Menu {
                 }
             }
         } catch (InputMismatchException i) {
-            System.out.println("Nope, enter number");
+            System.out.println("Please choose the number from the menu");
             new AdminMenu().show();
         }
     }
