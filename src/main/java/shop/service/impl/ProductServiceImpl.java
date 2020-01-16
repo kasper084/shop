@@ -10,6 +10,12 @@ import java.util.*;
 public class ProductServiceImpl implements ProductService {
 
     private ProductDAO productDAO = new ProductDAOImpl();
+    private Scanner scanner = new Scanner(System.in);
+
+    @Override
+    public Product getProduct(String productId) {
+        return null;
+    }
 
     @Override
     public Product getProductByName(String name) {
@@ -22,18 +28,31 @@ public class ProductServiceImpl implements ProductService {
         return productDAO.findAll();
     }
 
-    @Override
-    public void addNewProduct(String productId, String name, Double price) {
+
+    public void addProduct(String name, Double price, String description) {
+        Product product = new Product();
+        product.setId(UUID.randomUUID().toString());
+        product.setName(name);
+        product.setPrice(price);
+        product.setDescription(description);
+        productDAO.addProduct(product);
+
+    }
+
+    public void editProduct() {
 
     }
 
     @Override
-    public void getProduct(String productId) {
-
-    }
-
-    @Override
-    public void editProduct(String productId) {
-
+    public void editProduct(String name) {
+       Product product = getProductByName(name);
+       product.setName(name);
+       System.out.println("Enter name");
+       product.setName(scanner.nextLine());
+       System.out.println("Enter price");
+       product.setPrice(scanner.nextDouble());
+       System.out.println("Enter description");
+       product.setDescription(scanner.nextLine());
+       productDAO.updateProduct(product);
     }
 }

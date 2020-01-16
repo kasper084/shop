@@ -1,6 +1,9 @@
 package shop.menu.admin;
 
+import shop.entity.Product;
 import shop.menu.Menu;
+import shop.service.ProductService;
+import shop.service.impl.ProductServiceImpl;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -10,7 +13,8 @@ import java.util.Scanner;
 public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    //privet ProductService productService = new ProductService();
+    private ProductService productService = new ProductServiceImpl();
+
 
     @Override
     public void addOptions() {
@@ -23,16 +27,24 @@ public class ProductMenu implements Menu {
     public void show() {
         addOptions();
         showOptions(options);
-
         try {
             while (true) {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        //productService.editProduct(productId);
+                        System.out.printf("Select product for update: ");
+                        productService.editProduct(scanner.nextLine());
+                        // TO DO
                         break;
                     case 2:
-                        //productService.add();
+                        System.out.println("Add product name: ");
+                        String name = scanner.next();
+                        System.out.println("Add price: ");
+                        Double price = scanner.nextDouble();
+                        System.out.println("Add description: ");
+                        String description = scanner.next();
+                        productService.addProduct(name, price, description);
+                        System.out.println("You added product: " + name + ", "+price + ", "+ description);
                         break;
                     case 0:
                         close();
