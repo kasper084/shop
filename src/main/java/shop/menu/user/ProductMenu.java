@@ -5,10 +5,7 @@ import shop.menu.Menu;
 import shop.service.ProductService;
 import shop.service.impl.ProductServiceImpl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
@@ -30,37 +27,42 @@ public class ProductMenu implements Menu {
         addOptions();
         showOptions(options);
 
-        while (true) {
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    for (Product product : productService.getAllProducts()) {
-                        System.out.println(product);
-                    }
-                    if (productService.getAllProducts().isEmpty()) {
-                        System.out.println("Products list is empty");
-                    }
-                    break;
-                case 2:
-                    try {
-                        System.out.println(productService.getProductByName(scanner.nextLine()));
-                    } catch (NoSuchElementException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 3:
-                    //orderService.addSpecificProduct(productId);
-                    break;
-                case 4:
-                    //orderService.checkout(orderId);
-                    break;
-                case 0:
-                    close();
-                    break;
-                default:
-                    showOptions(options);
-                    break;
+        try {
+            while (true) {
+                int choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        for (Product product : productService.getAllProducts()) {
+                            System.out.println(product);
+                        }
+                        if (productService.getAllProducts().isEmpty()) {
+                            System.out.println("Products list is empty");
+                        }
+                        break;
+                    case 2:
+                        try {
+                            System.out.println(productService.getProductByName(scanner.nextLine()));
+                        } catch (NoSuchElementException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 3:
+                        //orderService.addSpecificProduct(productId);
+                        break;
+                    case 4:
+                        //orderService.checkout(orderId);
+                        break;
+                    case 0:
+                        close();
+                        break;
+                    default:
+                        showOptions(options);
+                        break;
+                }
             }
+        } catch (InputMismatchException i) {
+            System.out.println("Nope, enter number");
+            new ProductMenu().show();
         }
     }
 

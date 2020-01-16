@@ -6,6 +6,7 @@ import shop.service.AdminService;
 import shop.service.impl.AdminServiceImpl;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -59,6 +60,9 @@ public class UsersMenu implements Menu {
             } catch (IllegalArgumentException i) {
                 System.out.println(i.getMessage() + "\n");
                 showOptions(options);
+            } catch (InputMismatchException i) {
+                System.out.println("Nope, enter number");
+                new UsersMenu().show();
             }
         }
     }
