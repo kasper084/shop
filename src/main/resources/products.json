@@ -1,3 +1,20 @@
 [
-  {}
+  {
+    "id": "4",
+    "name": "apple",
+    "price": "0.52",
+    "description": "red apple"
+  },
+  {
+    "id": "5",
+    "name": "banana",
+    "price": "0.73",
+    "description": "yellow banana"
+  },
+  {
+    "id": "6",
+    "name": "coconut",
+    "price": "1.75",
+    "description": "small coconut"
+  }
 ]
