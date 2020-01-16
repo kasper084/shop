@@ -1,5 +1,6 @@
 package shop.menu;
 
+import shop.menu.admin.AdminMenu;
 import shop.menu.user.UserMenu;
 import shop.service.AdminService;
 import shop.service.UserService;
@@ -42,7 +43,13 @@ public class LoginMenu implements Menu {
                     }
                     break;
                 case 2:
-                    //adminService.login();
+                    if (adminService.login(credentialsMenu.getEmail(),
+                            credentialsMenu.getPassword())) {
+                        new AdminMenu().show();
+                    } else {
+                        System.out.println("Invalid credentials. Try again");
+                        showOptions(options);
+                    }
                     break;
                 case 3:
                     userService.registerUser(credentialsMenu.getEmail(),

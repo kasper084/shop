@@ -12,7 +12,7 @@ public class AdminMenu implements Menu {
 
     @Override
     public void addOptions() {
-        options.add("1. Block/Unblock user");
+        options.add("1. Block/Unblock/Delete user");
         options.add("2. Order menu");
         options.add("3. Products menu");
         options.add("0. Exit");
@@ -27,7 +27,7 @@ public class AdminMenu implements Menu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    new BlockMenu().show();
+                    new UsersMenu().show();
                     break;
                 case 2:
                     new OrderMenu().show();
