@@ -42,13 +42,13 @@ public class UsersMenu implements Menu {
                         System.out.printf("Blocked Users: \n%s%n",
                                 adminService.getInactiveUsers());
                         adminService.unblockUser(credentialsMenu.getEmail());
-                                System.out.println("User was unblocked");
+                        System.out.println("User was unblocked");
                         break;
                     case 3:
                         System.out.printf("All suers: \n%s%n",
                                 adminService.getAllUsers());
                         adminService.deleteUser(credentialsMenu.getEmail());
-                                System.out.println("User was deleted");
+                        System.out.println("User was deleted");
                     case 0:
                         close();
                         break;

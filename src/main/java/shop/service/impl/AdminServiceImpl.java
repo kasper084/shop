@@ -24,21 +24,21 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void blockUser(String userEmail) throws IllegalArgumentException{
-            changeUserStatus(userEmail, UserStatus.BLOCKED);
+    public void blockUser(String userEmail) throws IllegalArgumentException {
+        changeUserStatus(userEmail, UserStatus.BLOCKED);
 
     }
 
     @Override
-    public void unblockUser(String userEmail) throws IllegalArgumentException{
-            changeUserStatus(userEmail, UserStatus.ACTIVE);
+    public void unblockUser(String userEmail) throws IllegalArgumentException {
+        changeUserStatus(userEmail, UserStatus.ACTIVE);
 
     }
 
     @Override
-    public void deleteUser(String userEmail) throws IllegalArgumentException{
-            User user = getUser(userEmail);
-            userService.deleteUser(user);
+    public void deleteUser(String userEmail) throws IllegalArgumentException {
+        User user = getUser(userEmail);
+        userService.deleteUser(user);
     }
 
     @Override
