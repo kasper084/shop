@@ -32,17 +32,23 @@ public class ProductMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        System.out.printf("Select product for update: ");
-                        productService.editProduct(scanner.nextLine());
-                        // TO DO
+                        System.out.println("Select product for update: ");
+                        System.out.println("Enter name or leave empty if no update: ");
+                        String newName = scanner.next();
+                        System.out.println("Enter price or leave empty if no update: ");
+                        Double newPrice = scanner.nextDouble();
+                        System.out.println("Enter description or leave empty if no update: ");
+                        String newDescription = scanner.next();
+                        productService.editProduct(newName, newPrice, newDescription);
+                        System.out.println("Your updated product is: " + newName + ", "+ newPrice + ", "+ newDescription);
                         break;
                     case 2:
-                        System.out.println("Add product name: ");
-                        String name = scanner.next();
-                        System.out.println("Add price: ");
+                        System.out.println("Add name for new product: ");
+                        String name = scanner.nextLine();
+                        System.out.println("Add price for new product: ");
                         Double price = scanner.nextDouble();
-                        System.out.println("Add description: ");
-                        String description = scanner.next();
+                        System.out.println("Add description for new product: ");
+                        String description = scanner.nextLine();
                         productService.addProduct(name, price, description);
                         System.out.println("You added product: " + name + ", "+price + ", "+ description);
                         break;
