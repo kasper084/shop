@@ -14,5 +14,4 @@ public interface ProductDAO {
     void addProduct(Product product);
 
     void updateProduct(Product product);
-
 }
