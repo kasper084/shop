@@ -1,6 +1,5 @@
 package shop.menu.admin;
 
-import shop.entity.Product;
 import shop.menu.Menu;
 import shop.service.ProductService;
 import shop.service.impl.ProductServiceImpl;
@@ -14,7 +13,6 @@ public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
     private ProductService productService = new ProductServiceImpl();
-
 
     @Override
     public void addOptions() {
@@ -35,8 +33,8 @@ public class ProductMenu implements Menu {
                         System.out.println("Select product for update: ");
                         productService.getProductByName(scanner.next());
                         System.out.println("Enter new name or leave empty if no update: ");
-                        String newName = scanner.nextLine();
-                        System.out.println("Enter new price or leave empty if no update: ");
+                        String newName = scanner.next();
+                        System.out.println("Enter new price or leave 0 if no update: ");
                         Double newPrice = scanner.nextDouble();
                         scanner.nextLine();
                         System.out.println("Enter new description or leave empty if no update: ");
