@@ -26,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
         return productDAO.findAll();
     }
 
+    @Override
     public void addProduct(String name, Double price, String description) {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
