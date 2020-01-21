@@ -21,4 +21,12 @@ public class ProductDAOImpl implements ProductDAO {
     public List<Product> findAll() {
         return new ArrayList<>(productMap.values());
     }
+
+    public void addProduct(Product product) {
+        productMap.put(product.getName(), product);
+    }
+
+    public void updateProduct(Product product) {
+        productMap.replace(product.getName(), product);
+    }
 }

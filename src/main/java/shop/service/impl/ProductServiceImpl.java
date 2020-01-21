@@ -12,6 +12,10 @@ public class ProductServiceImpl implements ProductService {
     private ProductDAO productDAO = new ProductDAOImpl();
 
     @Override
+    public void getProduct(String productId) {
+    }
+
+    @Override
     public Product getProductByName(String name) {
         return productDAO.findProductByName(name)
                 .orElseThrow(() -> new NoSuchElementException("No product found"));
@@ -23,17 +27,28 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addNewProduct(String productId, String name, Double price) {
-
+    public void addProduct(String name, Double price, String description) {
+        Product product = new Product();
+        product.setId(UUID.randomUUID().toString());
+        product.setName(name);
+        product.setPrice(price);
+        product.setDescription(description);
+        productDAO.addProduct(product);
     }
 
     @Override
-    public void getProduct(String productId) {
+    public void editProduct(String name, Double price, String description) {
+        Product product = getProductByName(name);
 
-    }
+        product.setName(name);
+        if (name.isEmpty()) product.setName(product.getName());
 
-    @Override
-    public void editProduct(String productId) {
+        product.setPrice(price);
+        if (price == 0) product.setPrice(product.getPrice());
 
+        product.setDescription(description);
+        if (description.isEmpty()) product.setDescription(product.getDescription());
+
+        productDAO.updateProduct(product);
     }
 }

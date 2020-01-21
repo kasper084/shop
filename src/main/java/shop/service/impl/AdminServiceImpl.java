@@ -74,11 +74,11 @@ public class AdminServiceImpl implements AdminService {
         orderService.deleteOrder(orderId);
     }
 
-    public void addNewProduct(String productId, String productName, Double price) {
-        productService.addNewProduct(productId, productName, price);
+    public void addProduct(String productName, Double price, String description) {
+        productService.addProduct(productName, price, description);
     }
 
-    public void editProduct(String productId) {
-        productService.editProduct(productId);
+    public void editProduct(String productId, Double price, String description) {
+        productService.editProduct(productId, price, description);
     }
 }

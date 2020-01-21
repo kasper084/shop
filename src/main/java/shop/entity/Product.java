@@ -10,32 +10,31 @@ public class Product {
         return name;
     }
 
-    public void setName(String a) {
-        name = a;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String a) {
-        id = a;
+    public void setId(String id) {
+        this.id = id;
     }
-
 
     public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double a) {
-        price = a;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String a) {
-        description = a;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

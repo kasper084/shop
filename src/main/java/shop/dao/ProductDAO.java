@@ -10,4 +10,8 @@ public interface ProductDAO {
     List<Product> findAll();
 
     Optional<Product> findProductByName(String name);
+
+    void addProduct(Product product);
+
+    void updateProduct(Product product);
 }
