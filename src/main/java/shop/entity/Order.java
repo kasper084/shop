@@ -36,8 +36,8 @@ public class Order {
         return productList;
     }
 
-    public void addList(Product product){
-        productList.add(product);
+    public void setProductList(List productList) {
+        this.productList = productList;
     }
 
     public void setList(List<Product> a) {

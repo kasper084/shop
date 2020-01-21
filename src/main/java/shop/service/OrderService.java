@@ -10,12 +10,9 @@ public interface OrderService {
 
     void  getOrder(String orderId);
 
-    // for user
     List<Order> getAllOrdersForUser(String usersId);
 
-    // for admin
     void confirmOrder(String orderId);
 
-    // for user
     void checkoutOrder(Order order);
 }
