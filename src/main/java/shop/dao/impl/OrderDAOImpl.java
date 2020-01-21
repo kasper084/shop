@@ -6,21 +6,22 @@ import shop.entity.Order;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class OrderDAOImpl implements OrderDAO {
+public abstract class OrderDAOImpl implements OrderDAO {
     private Map<String, Order> orderMap = new HashMap<>();
 
     @Override
     public void save(Order order) {
-        orderMap.put(order.getUserId(), order);
+        orderMap.put(order.getId(), order);
     }
 
     @Override
-    public void update(String orderId) {
-
+    public void update(Order order) {
+        // може бути ось так. Бо тобі автоматично мапа перепише по кюючу існуючий обєкт
+        save(order);
     }
 
     @Override
-    public Optional<Order> findOrder(String userId) {
+    public Optional<Order> findOrderByUserId(String userId) {
         return orderMap.values().stream()
                 .filter(order -> order.getUserId().equals(userId))
                 .findFirst();

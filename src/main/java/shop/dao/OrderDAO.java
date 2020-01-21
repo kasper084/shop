@@ -9,9 +9,11 @@ public interface OrderDAO {
     
     void save(Order order);
 
-    void update(String orderId);
+    Optional<Order> getOrderById(String orderId);
 
-    Optional<Order> findOrder(String userId);
+    void update(Order order);
+
+    Optional<Order> findOrderByUserId(String userId);
 
     List<Order> getAllByUserId(String userId);
 
