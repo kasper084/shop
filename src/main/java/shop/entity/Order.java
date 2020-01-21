@@ -1,11 +1,13 @@
 package shop.entity;
 
+import shop.enums.OrderStatus;
+
 import java.util.List;
 
 public class Order {
     private String id;
     private String userid;
-    private String status;
+    private OrderStatus status;
     private List<Product> productList;
 
     public String getUserId() {
@@ -24,23 +26,15 @@ public class Order {
         id = a;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String a) {
-        status = a;
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
-    public List<Product> getList() {
-        return productList;
-    }
-
-    public void setProductList(List productList) {
+    public void setProductList(List<Product> productList) {
         this.productList = productList;
-    }
-
-    public void setList(List<Product> a) {
-        productList = a;
     }
 }

@@ -6,11 +6,20 @@ public class CredentialsMenu {
     private Scanner scanner = new Scanner(System.in);
 
     public String getEmail() {
+        int retryCount = 3;
         System.out.println("Enter email");
         String email = scanner.nextLine();
-        if (!isEmailValid(email)) {
-            System.out.println("Invalid format. Try again");
-            getEmail();
+        while (!isEmailValid(email)) {
+            retryCount--;
+            if (retryCount != 0) {
+                System.out.println("Invalid format. Try again" +
+                        "\nNumber of tries left:"
+                        + retryCount);
+                email = scanner.nextLine();
+            } else {
+                System.out.println("Hey! Email format isn't right");
+                new LoginMenu().show();
+            }
         }
         return email;
     }

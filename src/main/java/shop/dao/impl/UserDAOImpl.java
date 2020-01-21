@@ -3,9 +3,8 @@ package shop.dao.impl;
 import shop.dao.UserDAO;
 import shop.entity.User;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+
 
 public class UserDAOImpl implements UserDAO {
     private Map<String, User> userMap = new HashMap<>();
@@ -15,18 +14,25 @@ public class UserDAOImpl implements UserDAO {
         userMap.put(user.getId(), user);
     }
 
-    @Override
-    public void updateUser() {
-    }
 
     @Override
-    public void deleteUser() {
-
+    public void deleteUser(User user) {
+        userMap.remove(user.getId(), user);
     }
 
     @Override
     public boolean isExist(String email) {
         return findUser(email).isPresent();
+    }
+
+    @Override
+    public List<User> findAll() {
+        return new ArrayList<>(userMap.values());
+    }
+
+    @Override
+    public void updateUser(User user) {
+        saveUser(user);
     }
 
     @Override

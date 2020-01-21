@@ -3,6 +3,7 @@ package shop.menu.admin;
 import shop.menu.Menu;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class AdminMenu implements Menu {
 
     @Override
     public void addOptions() {
-        options.add("1. Block/Unblock user");
+        options.add("1. Block/Unblock/Delete user");
         options.add("2. Order menu");
         options.add("3. Products menu");
         options.add("0. Exit");
@@ -23,25 +24,30 @@ public class AdminMenu implements Menu {
         addOptions();
         showOptions(options);
 
-        while (true) {
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    new BlockMenu().show();
-                    break;
-                case 2:
-                    new OrderMenu().show();
-                    break;
-                case 3:
-                    new ProductMenu().show();
-                    break;
-                case 0:
-                    close();
-                    break;
-                default:
-                    showOptions(options);
-                    break;
+        try {
+            while (true) {
+                int choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        new UsersMenu().show();
+                        break;
+                    case 2:
+                        new OrderMenu().show();
+                        break;
+                    case 3:
+                        new ProductMenu().show();
+                        break;
+                    case 0:
+                        close();
+                        break;
+                    default:
+                        showOptions(options);
+                        break;
+                }
             }
+        } catch (InputMismatchException i) {
+            System.out.println("Please choose the number from the menu");
+            new AdminMenu().show();
         }
     }
 

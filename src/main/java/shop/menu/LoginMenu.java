@@ -1,5 +1,6 @@
 package shop.menu;
 
+import shop.menu.admin.AdminMenu;
 import shop.menu.user.UserMenu;
 import shop.service.AdminService;
 import shop.service.UserService;
@@ -7,6 +8,7 @@ import shop.service.impl.AdminServiceImpl;
 import shop.service.impl.UserServiceImpl;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,34 +31,45 @@ public class LoginMenu implements Menu {
         addOptions();
         showOptions(options);
 
-        while (true) {
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    if (userService.login(credentialsMenu.getEmail(),
-                            credentialsMenu.getPassword())) {
+        try {
+            while (true) {
+                int choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        if (userService.login(credentialsMenu.getEmail(),
+                                credentialsMenu.getPassword())) {
+                            new UserMenu().show();
+                        } else {
+                            System.out.println("Try again or register");
+                            showOptions(options);
+                        }
+                        break;
+                    case 2:
+                        if (adminService.login(credentialsMenu.getEmail(),
+                                credentialsMenu.getPassword())) {
+                            new AdminMenu().show();
+                        } else {
+                            System.out.println("Invalid credentials. Try again");
+                            showOptions(options);
+                        }
+                        break;
+                    case 3:
+                        userService.registerUser(credentialsMenu.getEmail(),
+                                credentialsMenu.getPassword(),
+                                credentialsMenu.getName(),
+                                credentialsMenu.getPhone());
                         new UserMenu().show();
-                    } else {
-                        System.out.println("Try again or register");
+                    case 0:
+                        close();
+                        break;
+                    default:
                         showOptions(options);
-                    }
-                    break;
-                case 2:
-                    //adminService.login();
-                    break;
-                case 3:
-                    userService.registerUser(credentialsMenu.getEmail(),
-                            credentialsMenu.getPassword(),
-                            credentialsMenu.getName(),
-                            credentialsMenu.getPhone());
-                    new UserMenu().show();
-                case 0:
-                    close();
-                    break;
-                default:
-                    showOptions(options);
-                    break;
+                        break;
+                }
             }
+        } catch (InputMismatchException i) {
+            System.out.println("Please choose the number from the menu");
+            new LoginMenu().show();
         }
     }
 

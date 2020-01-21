@@ -8,9 +8,11 @@ public interface ProductService {
 
     void getProduct(String productId);
 
+    Product getProductByName (String productName);
+
     List<Product> getAllProducts();
 
-    void addNewProduct(String productId, String name, Double price);
+    void addProduct(String name, Double price, String description);
 
-    void editProduct(String productId);
+    void editProduct(String name, Double price, String description);
 }
