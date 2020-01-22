@@ -9,19 +9,11 @@ import shop.service.ProductService;
 
 import java.util.List;
 
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import static shop.enums.OrderStatus.CONFIRMED;
 import static shop.enums.OrderStatus.PENDING;
 
 public class OrderServiceImpl implements OrderService {
-    private OrderDAO orderDAO = new OrderDAOImpl() {
-        @Override
-        public Optional<Order> getOrderById(String orderId) {
-            return Optional.empty();
-        }
-    };
+    private OrderDAO orderDAO = new OrderDAOImpl();
     private ProductService productService = new ProductServiceImpl();
 
     @Override
@@ -46,7 +38,6 @@ public class OrderServiceImpl implements OrderService {
 
             existingOrder.setStatus(CONFIRMED);
 
-            // should be object order. not orderId (in method update)
             orderDAO.update(existingOrder);
         }
 

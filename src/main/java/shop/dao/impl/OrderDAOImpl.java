@@ -6,7 +6,7 @@ import shop.entity.Order;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class OrderDAOImpl implements OrderDAO {
+public class OrderDAOImpl implements OrderDAO {
     private Map<String, Order> orderMap = new HashMap<>();
 
     @Override
@@ -15,8 +15,12 @@ public abstract class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public Optional<Order> getOrderById(String orderId) {
+        return Optional.empty();
+    }
+
+    @Override
     public void update(Order order) {
-        // може бути ось так. Бо тобі автоматично мапа перепише по кюючу існуючий обєкт
         save(order);
     }
 
