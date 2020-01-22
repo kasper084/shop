@@ -10,7 +10,7 @@ public class Order {
     private OrderStatus status;
     private List<Product> productList;
 
-    public String getUserid() {
+    public String getUserId() {
         return userid;
     }
 
@@ -26,20 +26,15 @@ public class Order {
         id = a;
     }
 
-
     public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(OrderStatus a) {
-        status = a;
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
-    public List<Product> getList() {
-        return productList;
-    }
-
-    public void setList(List<Product> a) {
-        productList = a;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

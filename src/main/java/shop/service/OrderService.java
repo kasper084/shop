@@ -12,9 +12,7 @@ public interface OrderService {
 
     List<Order> getAllOrdersForUser(String usersId);
 
-    void checkout(String orderId);
-
     void confirmOrder(String orderId);
 
-    void deleteOrder(String orderId);
+    void checkoutOrder(Order order);
 }
