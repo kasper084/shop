@@ -1,5 +1,6 @@
 package shop.service.impl;
 
+import shop.entity.Order;
 import shop.entity.User;
 import shop.enums.UserStatus;
 import shop.service.AdminService;
@@ -70,8 +71,8 @@ public class AdminServiceImpl implements AdminService {
         orderService.confirmOrder(orderId);
     }
 
-    public void deleteOrder(String orderId) {
-        orderService.deleteOrder(orderId);
+    public void declineOrder(Order orderId) {
+        orderService.declineOrder(orderId);
     }
 
     public void addProduct(String productName, Double price, String description) {
