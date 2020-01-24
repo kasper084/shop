@@ -11,18 +11,18 @@ public class ProductDAOImpl implements ProductDAO {
 
     private static Map<String, Product> dataBuilder() {
         Map<String, Product> productMap = new HashMap<>();
-        Product apple = setProduct("11", "apple", 0.52, "red apple");
-        Product banana = setProduct("12", "banana", 0.73, "yellow banana");
-        Product coconut = setProduct("13", "coconut", 1.75, "small coconut");
+        Product apple = setProduct("apple", 0.52, "red apple");
+        Product banana = setProduct("banana", 0.73, "yellow banana");
+        Product coconut = setProduct("coconut", 1.75, "small coconut");
         productMap.put(apple.getId(), apple);
         productMap.put(banana.getId(), banana);
         productMap.put(coconut.getId(), coconut);
         return productMap;
     }
 
-    private static Product setProduct(String id, String name, Double price, String description) {
+    private static Product setProduct(String name, Double price, String description) {
         Product product = new Product();
-        product.setId(id);
+        product.setId(UUID.randomUUID().toString());
         product.setName(name);
         product.setPrice(price);
         product.setDescription(description);
