@@ -9,8 +9,7 @@ import shop.service.ProductService;
 
 import java.util.List;
 
-import static shop.enums.OrderStatus.CONFIRMED;
-import static shop.enums.OrderStatus.PENDING;
+import static shop.enums.OrderStatus.*;
 
 public class OrderServiceImpl implements OrderService {
     private OrderDAO orderDAO = new OrderDAOImpl();
@@ -47,6 +46,9 @@ public class OrderServiceImpl implements OrderService {
          orderDAO.save(order);
         }
 
-        public void deleteOrder (String orderId){
-        }
+    @Override
+    public void declineOrder(Order order) {
+        order.setStatus(CANCELED);
     }
+
+}

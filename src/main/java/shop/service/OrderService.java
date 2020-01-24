@@ -15,4 +15,6 @@ public interface OrderService {
     void confirmOrder(String orderId);
 
     void checkoutOrder(Order order);
+
+    void declineOrder(Order order);
 }
