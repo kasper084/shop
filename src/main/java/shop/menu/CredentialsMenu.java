@@ -17,8 +17,7 @@ public class CredentialsMenu {
                         + retryCount);
                 email = scanner.nextLine();
             } else {
-                System.out.println("Hey! Email format isn't right");
-                new LoginMenu().show();
+                throw new IllegalArgumentException("Hey! Email format isn't right");
             }
         }
         return email;
@@ -26,20 +25,17 @@ public class CredentialsMenu {
 
     public String getPassword() {
         System.out.println("Enter password");
-        String password = scanner.nextLine();
-        return password;
+        return scanner.nextLine();
     }
 
     public String getName() {
         System.out.println("Enter name");
-        String name = scanner.nextLine();
-        return name;
+        return scanner.nextLine();
     }
 
     public String getPhone() {
         System.out.println("Enter phone number");
-        String phoneNumber = scanner.nextLine();
-        return phoneNumber;
+        return scanner.nextLine();
     }
 
     public boolean isEmailValid(String email) {

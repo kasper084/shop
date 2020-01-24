@@ -34,7 +34,7 @@ public class UsersMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        System.out.printf("Blocked Users: \n%s%n",
+                        System.out.printf("Active Users: \n%s%n",
                                 adminService.getActiveUsers());
                         adminService.blockUser(credentialsMenu.getEmail());
                         System.out.println("User was blocked");
@@ -59,7 +59,7 @@ public class UsersMenu implements Menu {
                 }
             } catch (IllegalArgumentException i) {
                 System.out.println(i.getMessage() + "\n");
-                showOptions(options);
+                new UsersMenu().show();
             } catch (InputMismatchException i) {
                 System.out.println("Please choose the number from the menu");
                 new UsersMenu().show();

@@ -71,7 +71,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     public void deleteOrder(String orderId) {
-        orderService.deleteOrder(orderId);
+        // orderService.deleteOrder(orderId);
     }
 
     public void addProduct(String productName, Double price, String description) {

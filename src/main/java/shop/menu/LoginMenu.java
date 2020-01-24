@@ -67,6 +67,10 @@ public class LoginMenu implements Menu {
                         break;
                 }
             }
+
+        } catch (IllegalArgumentException i) {
+            System.out.println(i.getMessage() + "\n");
+            new LoginMenu().show();
         } catch (InputMismatchException i) {
             System.out.println("Please choose the number from the menu");
             new LoginMenu().show();

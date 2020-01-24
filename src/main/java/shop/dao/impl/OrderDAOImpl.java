@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class OrderDAOImpl implements OrderDAO {
-    private Map<String, Order> orderMap = new HashMap<>();
+    private static Map<String, Order> orderMap = new HashMap<>();
 
     @Override
     public void save(Order order) {
