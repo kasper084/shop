@@ -1,5 +1,6 @@
 package shop.menu.admin;
 
+import shop.menu.LoginMenu;
 import shop.menu.Menu;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class AdminMenu implements Menu {
         options.add("1. Block/Unblock/Delete user");
         options.add("2. Order menu");
         options.add("3. Products menu");
+        options.add("4. Logout");
         options.add("0. Exit");
     }
 
@@ -37,6 +39,8 @@ public class AdminMenu implements Menu {
                     case 3:
                         new ProductMenu().show();
                         break;
+                    case 4:
+                        new LoginMenu().show();
                     case 0:
                         close();
                         break;
@@ -45,6 +49,9 @@ public class AdminMenu implements Menu {
                         break;
                 }
             }
+        } catch (IllegalArgumentException i) {
+            System.out.println(i.getMessage() + "\n");
+            new AdminMenu().show();
         } catch (InputMismatchException i) {
             System.out.println("Please choose the number from the menu");
             new AdminMenu().show();

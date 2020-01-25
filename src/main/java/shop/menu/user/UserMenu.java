@@ -1,5 +1,6 @@
 package shop.menu.user;
 
+import shop.menu.LoginMenu;
 import shop.menu.Menu;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class UserMenu implements Menu {
     public void addOptions() {
         options.add("1. Product list");
         options.add("2. My orders");
+        options.add("3. Logout");
         options.add("0. Exit");
     }
 
@@ -33,6 +35,8 @@ public class UserMenu implements Menu {
                     case 2:
                         new OrderMenu().show();
                         break;
+                    case 3:
+                        new LoginMenu().show();
                     case 0:
                         close();
                         break;
@@ -46,7 +50,6 @@ public class UserMenu implements Menu {
             new UserMenu().show();
         }
     }
-
 
     @Override
     public void close() {
