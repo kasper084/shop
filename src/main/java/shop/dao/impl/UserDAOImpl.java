@@ -12,16 +12,16 @@ public class UserDAOImpl implements UserDAO {
 
     private static Map<String, User> dataBuilder() {
         Map<String, User> userMap = new HashMap<>();
-        User john = setUser("John", "john@mail.com", "cGFzMg==", "6666666");
-        User dave = setUser("Dave", "dave@mail.com", "cGFzMQ==", "5555555");
-        User vlad = setUser("Vlad", "vlad@mail.com", "cGFzMw==", "7777777");
+        User john = setUser("3","John", "john@mail.com", "cGFzMg==", "6666666");
+        User dave = setUser("4","Dave", "dave@mail.com", "cGFzMQ==", "5555555");
+        User vlad = setUser("5","Vlad", "vlad@mail.com", "cGFzMw==", "7777777");
         userMap.put(john.getId(), john);
         userMap.put(dave.getId(), dave);
         userMap.put(vlad.getId(), vlad);
         return userMap;
     }
 
-    private static User setUser(String name, String email, String password, String phoneNumber) {
+    private static User setUser(String id, String name, String email, String password, String phoneNumber) {
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setName(name);
