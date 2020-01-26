@@ -37,4 +37,8 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String toString() {
+        return this.id + "|" + this.name + "|" + this.price + "|" + this.description;
+    }
 }

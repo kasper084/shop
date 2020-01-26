@@ -13,13 +13,15 @@ import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO = new UserDAOImpl();
+    private static Optional<User> user;
 
     @Override
-    public boolean login(String email, String password) {
+    public Optional<User> login(String email, String password) {
         Optional<User> optUser = userDAO.findUser(email);
-        return optUser.map(user -> user.getPassword()
+         optUser.map(user -> user.getPassword()
                 .equals(PasswordEncoder.decode(password)))
                 .orElse(false);
+        return optUser;
     }
 
     @Override
@@ -73,6 +75,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findUser(String email) {
         return userDAO.findUser(email);
+    }
+
+    public static Optional<User> getLoggedUser() {
+        return UserServiceImpl.user;
+    }
+
+    public static void setLogedUser(Optional<User> user) {
+        UserServiceImpl.user = user;
     }
 
     private void save(User user) {

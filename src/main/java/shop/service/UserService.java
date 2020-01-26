@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    boolean login(String username, String password);
+    Optional<User> login(String username, String password);
 
     boolean isExist(String username);
 

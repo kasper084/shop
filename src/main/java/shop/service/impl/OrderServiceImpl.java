@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
         order.setProductList(productCart);
         order.setId(UUID.randomUUID().toString());
         order.setStatus(PENDING);
-        System.out.println(order);
+        order.setUserid(UserServiceImpl.getLoggedUser().get().getId());
         orderDAO.save(order);
     }
 

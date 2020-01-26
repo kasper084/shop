@@ -35,7 +35,7 @@ public class ProductMenu implements Menu {
                 switch (choice) {
                     case 1:
                         for (Product product : productService.getAllProducts()) {
-                            System.out.println(product);
+                            System.out.println(product.toString());
                         }
                         if (productService.getAllProducts().isEmpty()) {
                             System.out.println("Products list is empty");
@@ -59,6 +59,7 @@ public class ProductMenu implements Menu {
                         break;
                     case 4:
                         orderService.checkoutOrder();
+                        System.out.println("Order was saved");
                         break;
                     case 0:
                         close();
