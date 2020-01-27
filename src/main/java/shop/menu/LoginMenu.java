@@ -1,6 +1,5 @@
 package shop.menu;
 
-import shop.entity.User;
 import shop.menu.admin.AdminMenu;
 import shop.menu.user.UserMenu;
 import shop.service.AdminService;
@@ -34,10 +33,8 @@ public class LoginMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        Optional<User> currentUser = userService.login(credentialsMenu.getEmail(),
-                                credentialsMenu.getPassword());
-                        if (!currentUser.equals(false)) {
-                            UserServiceImpl.setLogedUser(currentUser);
+                        if (userService.login(credentialsMenu.getEmail(),
+                                credentialsMenu.getPassword()).isPresent()) {
                             new UserMenu().show();
                         } else {
                             System.out.println("Try again or register");

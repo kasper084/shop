@@ -47,12 +47,13 @@ public class OrderServiceImpl implements OrderService {
     };
 
     @Override
-    public void checkoutOrder() {
+    public void checkoutOrder(String userId) {
         Order order = new Order();
-        order.setProductList(productCart);
+        order.setProductList(new ArrayList<>(productCart));
+        productCart.clear();
         order.setId(UUID.randomUUID().toString());
         order.setStatus(PENDING);
-        order.setUserid(UserServiceImpl.getLoggedUser().get().getId());
+        order.setUserid(userId);
         orderDAO.save(order);
     }
 
