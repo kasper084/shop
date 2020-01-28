@@ -39,6 +39,7 @@ public class UsersMenu implements Menu {
                                     adminService.getActiveUsers());
                             adminService.blockUser(credentialsMenu.getEmail());
                             System.out.println("User was blocked");
+                            showOptions(options);
                         } else {
                             System.out.println("There are no active users yet");
                             new UsersMenu().show();
@@ -50,6 +51,7 @@ public class UsersMenu implements Menu {
                                     adminService.getInactiveUsers());
                             adminService.unblockUser(credentialsMenu.getEmail());
                             System.out.println("User was unblocked");
+                            showOptions(options);
                         } else {
                             System.out.println("There are no blocked users yet");
                             new UsersMenu().show();
@@ -61,10 +63,12 @@ public class UsersMenu implements Menu {
                                     adminService.getAllEmails());
                             adminService.deleteUser(credentialsMenu.getEmail());
                             System.out.println("User was deleted");
+                            showOptions(options);
                         } else {
                             System.out.println("There are no users yet");
                             new UsersMenu().show();
                         }
+                        break;
                     case 0:
                         close();
                         break;
