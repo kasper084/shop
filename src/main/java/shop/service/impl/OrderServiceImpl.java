@@ -53,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
         productCart.clear();
         order.setId(UUID.randomUUID().toString());
         order.setStatus(PENDING);
-        order.setUserid(userId);
+        order.setUserId(userId);
         orderDAO.save(order);
     }
 

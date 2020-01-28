@@ -12,14 +12,13 @@ import java.util.*;
 
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO = new UserDAOImpl();
-    private static Optional<User> user;
 
     @Override
-    public Boolean login(String email, String password) {
+    public Optional<User> login(String email, String password) {
         Optional<User> optUser = userDAO.findUser(email);
-        return optUser.map(user -> user.getPassword()
-                .equals(PasswordEncoder.encode(password)))
-                .orElse(false);
+        return optUser
+                .filter(user -> user.getPassword()
+                .equals(PasswordEncoder.encode(password)));
     }
 
     @Override

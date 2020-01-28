@@ -1,9 +1,11 @@
 package shop.menu;
 
+import shop.entity.User;
 import shop.menu.admin.AdminMenu;
 import shop.menu.user.UserMenu;
 import shop.service.AdminService;
 import shop.service.UserService;
+import shop.service.UserSession;
 import shop.service.impl.AdminServiceImpl;
 import shop.service.impl.UserServiceImpl;
 
@@ -33,8 +35,10 @@ public class LoginMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        if (userService.login(credentialsMenu.getEmail(),
-                                credentialsMenu.getPassword()).isPresent()) {
+                       Optional<User> loggedUser = userService.login(credentialsMenu.getEmail(),
+                               credentialsMenu.getPassword());
+                        if (loggedUser.isPresent()) {
+                            UserSession.setInstance(loggedUser);
                             new UserMenu().show();
                         } else {
                             System.out.println("Try again or register");

@@ -4,6 +4,7 @@ import shop.entity.Product;
 import shop.menu.Menu;
 import shop.service.OrderService;
 import shop.service.ProductService;
+import shop.service.UserSession;
 import shop.service.impl.OrderServiceImpl;
 import shop.service.impl.ProductServiceImpl;
 
@@ -58,7 +59,7 @@ public class ProductMenu implements Menu {
                         System.out.println("Add another product enter 3, checkout 4");
                         break;
                     case 4:
-                        orderService.checkoutOrder(userId); // TO DO
+                        orderService.checkoutOrder(UserSession.getInstance().user().get().getId());
                         System.out.println("Order was saved");
                         break;
                     case 0:
