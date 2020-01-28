@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     public boolean login(String email, String password) {
         Optional<User> optUser = userDAO.findUser(email);
         return optUser.map(user -> user.getPassword()
-                .equals(PasswordEncoder.decode(password)))
+                .equals(PasswordEncoder.encode(password)))
                 .orElse(false);
     }
 
@@ -52,22 +52,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return userDAO.findAll();
-    }
-
-    @Override
-    public List<String> getActiveUsers() {
-        return getAll().stream()
-                .filter(user -> user.getStatus().equals(UserStatus.ACTIVE))
-                .map(User::getEmail)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<String> getInactiveUsers() {
-        return getAll().stream()
-                .filter(user -> user.getStatus().equals(UserStatus.BLOCKED))
-                .map(User::getEmail)
-                .collect(Collectors.toList());
     }
 
     @Override
