@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdminServiceImpl implements AdminService {
-    private static final String ADMIN_EMAIL = "admin@adm.in";
+    private static final String ADMIN_EMAIL = "admin@mail.com";
     private static final String ADMIN_PASSWORD = "admin";
 
     private ProductService productService = new ProductServiceImpl();

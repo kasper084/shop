@@ -34,34 +34,37 @@ public class UsersMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        if (adminService.getActiveUsers().isEmpty()) {
+                        if (!adminService.getActiveUsers().isEmpty()) {
+                            System.out.printf("Active Users: \n%s%n",
+                                    adminService.getActiveUsers());
+                            adminService.blockUser(credentialsMenu.getEmail());
+                            System.out.println("User was blocked");
+                        } else {
                             System.out.println("There are no active users yet");
-                            new UsersMenu();
+                            new UsersMenu().show();
                         }
-                        System.out.printf("Active Users: \n%s%n",
-                                adminService.getActiveUsers());
-                        adminService.blockUser(credentialsMenu.getEmail());
-                        System.out.println("User was blocked");
                         break;
                     case 2:
-                        if (adminService.getActiveUsers().isEmpty()) {
+                        if (!adminService.getActiveUsers().isEmpty()) {
+                            System.out.printf("Blocked Users: \n%s%n",
+                                    adminService.getInactiveUsers());
+                            adminService.unblockUser(credentialsMenu.getEmail());
+                            System.out.println("User was unblocked");
+                        } else {
                             System.out.println("There are no blocked users yet");
-                            new UsersMenu();
+                            new UsersMenu().show();
                         }
-                        System.out.printf("Blocked Users: \n%s%n",
-                                adminService.getInactiveUsers());
-                        adminService.unblockUser(credentialsMenu.getEmail());
-                        System.out.println("User was unblocked");
                         break;
                     case 3:
-                        if (adminService.getActiveUsers().isEmpty()) {
+                        if (!adminService.getActiveUsers().isEmpty()) {
+                            System.out.printf("All suers: \n%s%n",
+                                    adminService.getAllUsers());
+                            adminService.deleteUser(credentialsMenu.getEmail());
+                            System.out.println("User was deleted");
+                        } else {
                             System.out.println("There are no users yet");
-                            new UsersMenu();
+                            new UsersMenu().show();
                         }
-                        System.out.printf("All suers: \n%s%n",
-                                adminService.getAllUsers());
-                        adminService.deleteUser(credentialsMenu.getEmail());
-                        System.out.println("User was deleted");
                     case 0:
                         close();
                         break;
