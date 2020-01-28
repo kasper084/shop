@@ -45,7 +45,7 @@ public class UsersMenu implements Menu {
                         }
                         break;
                     case 2:
-                        if (!adminService.getActiveUsers().isEmpty()) {
+                        if (!adminService.getInactiveUsers().isEmpty()) {
                             System.out.printf("Blocked Users: \n%s%n",
                                     adminService.getInactiveUsers());
                             adminService.unblockUser(credentialsMenu.getEmail());
@@ -56,9 +56,9 @@ public class UsersMenu implements Menu {
                         }
                         break;
                     case 3:
-                        if (!adminService.getActiveUsers().isEmpty()) {
-                            System.out.printf("All suers: \n%s%n",
-                                    adminService.getAllUsers());
+                        if (!adminService.getAllEmails().isEmpty()) {
+                            System.out.printf("All users: \n%s%n",
+                                    adminService.getAllEmails());
                             adminService.deleteUser(credentialsMenu.getEmail());
                             System.out.println("User was deleted");
                         } else {

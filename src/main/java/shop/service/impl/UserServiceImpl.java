@@ -55,22 +55,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> getActiveUsers() {
-        return getAll().stream()
-                .filter(user -> user.getStatus().equals(UserStatus.ACTIVE))
-                .map(User::getEmail)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<String> getInactiveUsers() {
-        return getAll().stream()
-                .filter(user -> user.getStatus().equals(UserStatus.BLOCKED))
-                .map(User::getEmail)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public Optional<User> findUser(String email) {
         return userDAO.findUser(email);
     }

@@ -13,9 +13,9 @@ public class UserDAOImpl implements UserDAO {
 
     private static Map<String, User> dataBuilder() {
         Map<String, User> userMap = new HashMap<>();
-        User john = setUser("3","John", "john@mail.com", "pas1", "6666666");
-        User dave = setUser("4","Dave", "dave@mail.com", "pas2", "5555555");
-        User vlad = setUser("5","Vlad", "vlad@mail.com", "pas3", "7777777");
+        User john = setUser("3", "John", "john@mail.com", "pas1", "6666666");
+        User dave = setUser("4", "Dave", "dave@mail.com", "pas2", "5555555");
+        User vlad = setUser("5", "Vlad", "vlad@mail.com", "pas3", "7777777");
         userMap.put(john.getId(), john);
         userMap.put(dave.getId(), dave);
         userMap.put(vlad.getId(), vlad);

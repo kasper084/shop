@@ -8,6 +8,8 @@ import shop.service.OrderService;
 import shop.service.ProductService;
 import shop.service.UserService;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,18 +44,30 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<String> getActiveUsers() {
-        return userService.getInactiveUsers();
+        return getAllUsers().stream()
+                .filter(user -> user.getStatus().equals(UserStatus.ACTIVE))
+                .map(User::getEmail)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<String> getInactiveUsers() {
-        return userService.getInactiveUsers();
+        return getAllUsers().stream()
+                .filter(user -> user.getStatus().equals(UserStatus.BLOCKED))
+                .map(User::getEmail)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<String> getAllUsers() {
-        return userService.getAll().stream()
-                .map(User::getEmail).collect(Collectors.toList());
+    public List<String> getAllEmails() {
+        return getAllUsers().stream()
+                .map(User::getEmail)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return new ArrayList<>(userService.getAll());
     }
 
     private void changeUserStatus(String userEmail, UserStatus status) {

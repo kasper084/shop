@@ -19,9 +19,5 @@ public interface UserService {
 
     List<User> getAll();
 
-    List<String> getActiveUsers();
-
-    List<String> getInactiveUsers();
-
     Optional<User> findUser(String email);
 }

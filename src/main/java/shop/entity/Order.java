@@ -6,24 +6,24 @@ import java.util.List;
 
 public class Order {
     private String id;
-    private String userid;
+    private String userId;
     private OrderStatus status;
     private List<Product> productList;
 
     public String getUserId() {
-        return userid;
+        return userId;
     }
 
-    public void setUserid(String a) {
-        userid = a;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String a) {
-        id = a;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public OrderStatus getStatus() {

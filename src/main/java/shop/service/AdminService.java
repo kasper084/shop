@@ -1,5 +1,7 @@
 package shop.service;
 
+import shop.entity.User;
+
 import java.util.List;
 
 public interface AdminService {
@@ -16,5 +18,7 @@ public interface AdminService {
 
     List<String> getInactiveUsers();
 
-    List<String> getAllUsers();
+    List<String> getAllEmails();
+
+    List<User> getAllUsers();
 }
