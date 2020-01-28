@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    Optional<User> login(String username, String password);
+    Boolean login(String username, String password);
 
     boolean isExist(String username);
 
@@ -18,10 +18,6 @@ public interface UserService {
     void deleteUser(User user);
 
     List<User> getAll();
-
-    List<String> getActiveUsers();
-
-    List<String> getInactiveUsers();
 
     Optional<User> findUser(String email);
 }

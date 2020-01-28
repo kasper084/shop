@@ -9,18 +9,17 @@ import shop.service.UserService;
 import shop.utils.PasswordEncoder;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO = new UserDAOImpl();
     private static Optional<User> user;
 
     @Override
-    public Optional<User> login(String email, String password) {
+    public Boolean login(String email, String password) {
         Optional<User> optUser = userDAO.findUser(email);
-        return optUser
-                .filter(user -> user.getPassword()
-                .equals(PasswordEncoder.decode(password)));
+        return optUser.map(user -> user.getPassword()
+                .equals(PasswordEncoder.encode(password)))
+                .orElse(false);
     }
 
     @Override
@@ -53,22 +52,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return userDAO.findAll();
-    }
-
-    @Override
-    public List<String> getActiveUsers() {
-        return getAll().stream()
-                .filter(user -> user.getStatus().equals(UserStatus.ACTIVE))
-                .map(User::getEmail)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<String> getInactiveUsers() {
-        return getAll().stream()
-                .filter(user -> user.getStatus().equals(UserStatus.BLOCKED))
-                .map(User::getEmail)
-                .collect(Collectors.toList());
     }
 
     @Override

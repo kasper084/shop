@@ -28,7 +28,8 @@ public class OrderDAOImpl implements OrderDAO {
     private static Order setOrder(String id, String userId, Product product) {
         Order order = new Order();
         order.setId(id);
-        order.setUserid(userId);
+        order.setUserId(userId);
+        order.setProductList(new ArrayList<>());
         order.getProductList().add(product);
         order.setStatus(OrderStatus.PENDING);
         return order;

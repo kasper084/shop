@@ -17,7 +17,7 @@ public class ProductMenu implements Menu {
 
     @Override
     public void addOptions() {
-        options.add("1. Product list");
+        options.add("1. Show products");
         options.add("2. Search for specific product");
         options.add("3. Add specific product to order");
         options.add("4. Order checkout");
