@@ -23,6 +23,11 @@ public class CredentialsMenu {
         return email;
     }
 
+    public String getId(){
+        System.out.println("Enter ID");
+        return scanner.nextLine();
+    }
+
     public String getPassword() {
         System.out.println("Enter password");
         return scanner.nextLine();

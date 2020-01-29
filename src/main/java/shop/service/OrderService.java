@@ -8,7 +8,7 @@ public interface OrderService {
 
     void addProductToOrder(String productId);
 
-    void  getOrder(String orderId);
+    Order getOrder(String orderId);
 
     List<Order> getAllOrdersForUser(String usersId);
 
@@ -16,5 +16,7 @@ public interface OrderService {
 
     void checkoutOrder(Order order);
 
-    void declineOrder(Order order);
+    void declineOrder(String orderId);
+
+    List<Order> getAll();
 }
