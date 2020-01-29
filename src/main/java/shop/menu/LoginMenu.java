@@ -35,15 +35,13 @@ public class LoginMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                       Optional<User> loggedUser = userService.login(credentialsMenu.getEmail(),
-                               credentialsMenu.getPassword());
-                        if (loggedUser.isPresent()) {
-                            UserSession.setInstance(loggedUser);
-                            new UserMenu().show();
-                        } else {
-                            System.out.println("Try again or register");
-                            showOptions(options);
-                        }
+                        Optional<User> loggedUser = userService.login(credentialsMenu.getEmail(),
+                                credentialsMenu.getPassword());
+                        UserSession.setInstance(loggedUser);
+                        loggedUser.ifPresentOrElse
+                                (result -> {
+                                    new UserMenu().show();
+                                }, () -> System.out.println("Try again or register"));
                         break;
                     case 2:
                         if (adminService.login(credentialsMenu.getEmail(),

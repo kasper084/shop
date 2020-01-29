@@ -59,7 +59,7 @@ public class ProductMenu implements Menu {
                         System.out.println("Add another product enter 3, checkout 4");
                         break;
                     case 4:
-                        orderService.checkoutOrder(UserSession.getInstance().user().get().getId());
+                        orderService.checkoutOrder(UserSession.getInstance().getUser().get().getId());
                         System.out.println("Order was saved");
                         break;
                     case 0:

@@ -24,7 +24,7 @@ public final class UserSession {
         return instance;
     }
 
-    public Optional<User> user() {
+    public Optional<User> getUser() {
         return loggedUser;
     }
 
