@@ -1,12 +1,13 @@
 package shop.service;
 
 import shop.entity.Order;
+import shop.entity.Product;
 
 import java.util.List;
 
 public interface OrderService {
 
-    void addProductToOrder(String productId);
+    List<Product> addProductToOrder(String name);
 
     Order getOrder(String orderId);
 
@@ -14,7 +15,7 @@ public interface OrderService {
 
     void confirmOrder(String orderId);
 
-    void checkoutOrder(Order order);
+    void checkoutOrder(String userId);
 
     void declineOrder(String orderId);
 

@@ -4,22 +4,21 @@ import shop.dao.OrderDAO;
 import shop.dao.impl.OrderDAOImpl;
 
 import shop.entity.Order;
+import shop.entity.Product;
 import shop.service.OrderService;
 import shop.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 import static shop.enums.OrderStatus.*;
 
 public class OrderServiceImpl implements OrderService {
+
     private OrderDAO orderDAO = new OrderDAOImpl();
     private ProductService productService = new ProductServiceImpl();
-
-    @Override
-    public void addProductToOrder(String productId) {
-        productService.getProduct(productId);
-    }
+    private List<Product> productCart = new ArrayList<>();
 
     @Override
     public Order getOrder(String orderId) {
@@ -39,8 +38,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void checkoutOrder(Order order) {
+    public List<Product> addProductToOrder(String name) {
+        productCart.add(productService.getProductByName(name));
+        return productCart;
+    };
+
+    @Override
+    public void checkoutOrder(String userId) {
+        Order order = new Order();
+        order.setProductList(new ArrayList<>(productCart));
+        productCart.clear();
+        order.setId(UUID.randomUUID().toString());
         order.setStatus(PENDING);
+        order.setUserId(userId);
         orderDAO.save(order);
     }
 
