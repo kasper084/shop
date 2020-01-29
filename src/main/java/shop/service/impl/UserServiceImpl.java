@@ -9,17 +9,16 @@ import shop.service.UserService;
 import shop.utils.PasswordEncoder;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO = new UserDAOImpl();
 
     @Override
-    public boolean login(String email, String password) {
+    public Optional<User> login(String email, String password) {
         Optional<User> optUser = userDAO.findUser(email);
-        return optUser.map(user -> user.getPassword()
-                .equals(PasswordEncoder.encode(password)))
-                .orElse(false);
+        return optUser
+                .filter(user -> user.getPassword()
+                .equals(PasswordEncoder.encode(password)));
     }
 
     @Override
