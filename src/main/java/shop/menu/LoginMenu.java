@@ -84,5 +84,6 @@ public class LoginMenu implements Menu {
         loggedUser.ifPresentOrElse
                 (result -> new UserMenu().show(),
                         () -> System.out.println("Try again or register"));
+        showOptions(options);
     }
 }

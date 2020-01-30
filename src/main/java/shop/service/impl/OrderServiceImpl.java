@@ -12,6 +12,7 @@ import shop.service.session.UserSession;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static shop.enums.OrderStatus.*;
@@ -28,9 +29,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrdersForUser() {
-        String usersId = UserSession.getInstance().getUser().map(User::getId).get();
-        return orderDAO.getAllByUserId(usersId);
+    public List<Order> getAllOrdersForCurrentUser(String userId) {
+        return orderDAO.getAllByUserId(userId);
     }
 
     @Override

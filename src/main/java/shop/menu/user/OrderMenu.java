@@ -6,10 +6,7 @@ import shop.service.OrderService;
 import shop.service.impl.OrderServiceImpl;
 import shop.service.session.UserSession;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class OrderMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
@@ -32,9 +29,10 @@ public class OrderMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        if (!orderService.getAllOrdersForUser().isEmpty()) {
-                            System.out.println("Your orders history:");
-                            System.out.println(orderService.getAllOrdersForUser());
+                        Optional<User> optUser = UserSession.getInstance().getUser();
+                        if (optUser.isPresent()) {
+                            String userId = optUser.map(User::getId).get();
+                            System.out.println(orderService.getAllOrdersForCurrentUser(userId));
                         } else {
                             System.out.println("No orders yet");
                         }
