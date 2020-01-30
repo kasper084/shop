@@ -4,7 +4,7 @@ import shop.entity.Product;
 import shop.menu.Menu;
 import shop.service.OrderService;
 import shop.service.ProductService;
-import shop.service.UserSession;
+import shop.service.session.UserSession;
 import shop.service.impl.OrderServiceImpl;
 import shop.service.impl.ProductServiceImpl;
 

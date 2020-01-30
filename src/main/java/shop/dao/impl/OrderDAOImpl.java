@@ -3,7 +3,6 @@ package shop.dao.impl;
 import shop.dao.OrderDAO;
 import shop.entity.Order;
 import shop.entity.Product;
-import shop.entity.User;
 import shop.enums.OrderStatus;
 
 import java.util.*;

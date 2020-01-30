@@ -11,7 +11,7 @@ public interface OrderService {
 
     Order getOrder(String orderId);
 
-    List<Order> getAllOrdersForUser(String usersId);
+    List<Order> getAllOrdersForCurrentUser(String userId);
 
     void confirmOrder(String orderId);
 

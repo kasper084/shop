@@ -1,4 +1,4 @@
-package shop.service;
+package shop.service.session;
 
 import shop.entity.User;
 
