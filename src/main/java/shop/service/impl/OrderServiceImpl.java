@@ -21,22 +21,19 @@ public class OrderServiceImpl implements OrderService {
     private List<Product> productCart = new ArrayList<>();
 
     @Override
-    public void getOrder(String orderId) {
-
+    public Order getOrder(String orderId) {
+        return orderDAO.getOrderById(orderId).orElseThrow(() -> new IllegalArgumentException("No such order"));
     }
 
     @Override
     public List<Order> getAllOrdersForUser(String usersId) {
-
         return orderDAO.getAllByUserId(usersId);
     }
 
     @Override
     public void confirmOrder(String orderId) {
-        Order existingOrder = orderDAO.getOrderById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found"));
-
+        Order existingOrder = getOrder(orderId);
         existingOrder.setStatus(CONFIRMED);
-
         orderDAO.update(existingOrder);
     }
 
@@ -58,8 +55,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void declineOrder(Order order) {
+    public void declineOrder(String orderId) {
+        Order order = getOrder(orderId);
         order.setStatus(CANCELED);
+        orderDAO.update(order);
+    }
+
+    @Override
+    public List<Order> getAll() {
+        return orderDAO.getAll();
     }
 
 }
