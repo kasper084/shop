@@ -29,13 +29,9 @@ public class OrderMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        Optional<User> optUser = UserSession.getInstance().getUser();
-                        if (optUser.isPresent()) {
-                            String userId = optUser.map(User::getId).get();
-                            System.out.println(orderService.getAllOrdersForCurrentUser(userId));
-                        } else {
-                            System.out.println("No orders yet");
-                        }
+                        UserSession.getInstance().getUser().ifPresentOrElse(user -> {
+                            System.out.println(orderService.getAllOrdersForCurrentUser(user.getId()));
+                        }, () -> System.out.println("No orders found"));
                         System.out.println("Press \"0\" to go back");
                         break;
                     case 0:
