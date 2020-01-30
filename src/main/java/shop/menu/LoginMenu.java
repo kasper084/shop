@@ -5,7 +5,7 @@ import shop.menu.admin.AdminMenu;
 import shop.menu.user.UserMenu;
 import shop.service.AdminService;
 import shop.service.UserService;
-import shop.service.UserSession;
+import shop.service.session.UserSession;
 import shop.service.impl.AdminServiceImpl;
 import shop.service.impl.UserServiceImpl;
 

@@ -5,8 +5,10 @@ import shop.dao.impl.OrderDAOImpl;
 
 import shop.entity.Order;
 import shop.entity.Product;
+import shop.entity.User;
 import shop.service.OrderService;
 import shop.service.ProductService;
+import shop.service.session.UserSession;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrdersForUser(String usersId) {
+    public List<Order> getAllOrdersForUser() {
+        String usersId = UserSession.getInstance().getUser().map(User::getId).get();
         return orderDAO.getAllByUserId(usersId);
     }
 
@@ -41,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Product> addProductToOrder(String name) {
         productCart.add(productService.getProductByName(name));
         return productCart;
-    };
+    }
 
     @Override
     public void checkoutOrder(String userId) {
@@ -65,5 +68,4 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAll() {
         return orderDAO.getAll();
     }
-
 }
