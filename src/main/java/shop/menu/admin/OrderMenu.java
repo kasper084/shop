@@ -14,7 +14,7 @@ public class OrderMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
     private AdminService adminService = new AdminServiceImpl();
-    private OrderIdInput orderId = new OrderIdInput();
+    private OrderInput orderInput = new OrderInput();
 
     @Override
     public void addOptions() {
@@ -35,7 +35,7 @@ public class OrderMenu implements Menu {
                     case 1:
                         if (!adminService.getAllPendingOrders().isEmpty()) {
                             System.out.println(adminService.getAllPendingOrders());
-                            adminService.confirmOrder(orderId.getOrderId());
+                            adminService.confirmOrder(orderInput.getOrderId());
                             System.out.println("Order confirmed");
                             showOptions(options);
                         } else {
@@ -46,7 +46,7 @@ public class OrderMenu implements Menu {
                     case 2:
                         if (!adminService.getAllPendingOrders().isEmpty()) {
                             System.out.println(adminService.getAllPendingOrders());
-                            adminService.declineOrder(orderId.getOrderId());
+                            adminService.declineOrder(orderInput.getOrderId());
                             System.out.println("Order canceled");
                             showOptions(options);
                         } else {
