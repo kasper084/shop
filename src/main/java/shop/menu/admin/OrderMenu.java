@@ -1,6 +1,5 @@
 package shop.menu.admin;
 
-import shop.entity.Order;
 import shop.menu.Menu;
 import shop.service.AdminService;
 import shop.service.impl.AdminServiceImpl;
@@ -15,7 +14,7 @@ public class OrderMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
     private AdminService adminService = new AdminServiceImpl();
-    private Order order = new Order();
+    private OrderIdInput orderId = new OrderIdInput();
 
     @Override
     public void addOptions() {
@@ -34,23 +33,23 @@ public class OrderMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        if (!adminService.getAllPendingOrders().isEmpty()){
+                        if (!adminService.getAllPendingOrders().isEmpty()) {
                             System.out.println(adminService.getAllPendingOrders());
-                            adminService.confirmOrder(order.getOrderId());
+                            adminService.confirmOrder(orderId.getOrderId());
                             System.out.println("Order confirmed");
                             showOptions(options);
-                        }else{
+                        } else {
                             System.out.println("No orders yet");
                             new OrderMenu().show();
                         }
                         break;
                     case 2:
-                        if (!adminService.getAllPendingOrders().isEmpty()){
+                        if (!adminService.getAllPendingOrders().isEmpty()) {
                             System.out.println(adminService.getAllPendingOrders());
-                            adminService.declineOrder(order.getOrderId());
+                            adminService.declineOrder(orderId.getOrderId());
                             System.out.println("Order canceled");
                             showOptions(options);
-                        }else{
+                        } else {
                             System.out.println("No orders yet");
                             new OrderMenu().show();
                         }
@@ -63,7 +62,7 @@ public class OrderMenu implements Menu {
                         break;
                 }
             }
-        }catch (IllegalArgumentException i) {
+        } catch (IllegalArgumentException i) {
             System.out.println(i.getMessage() + "\n");
             new OrderMenu().show();
         } catch (InputMismatchException i) {

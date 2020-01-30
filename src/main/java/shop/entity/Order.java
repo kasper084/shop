@@ -44,13 +44,10 @@ public class Order {
         this.productList = productList;
     }
 
-    public String getOrderId(){ System.out.println("Enter ID"); return scanner.nextLine();}
-
-
     @Override
     public String toString() {
         return "orderId='" + id + '\'' +
                 ", userId='" + userId + '\''+
-                ", order status" + status;
+                ", order status - " + status;
     }
 }
