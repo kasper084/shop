@@ -2,6 +2,8 @@ package shop.menu;
 
 import java.util.Scanner;
 
+import static shop.ExceptionMessages.EMAIL_FORMAT_WRONG;
+
 public class CredentialsMenu {
     private Scanner scanner = new Scanner(System.in);
 

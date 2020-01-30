@@ -9,6 +9,7 @@ import shop.service.ProductService;
 
 import java.util.List;
 
+import static shop.ExceptionMessages.ORDER_NOT_FOUND;
 import static shop.enums.OrderStatus.*;
 
 public class OrderServiceImpl implements OrderService {

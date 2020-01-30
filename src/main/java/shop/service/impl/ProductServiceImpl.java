@@ -7,6 +7,8 @@ import shop.service.ProductService;
 
 import java.util.*;
 
+import static shop.ExceptionMessages.NO_PRODUCT_FOUND;
+
 public class ProductServiceImpl implements ProductService {
 
     private ProductDAO productDAO = new ProductDAOImpl();

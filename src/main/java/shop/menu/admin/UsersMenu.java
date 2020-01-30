@@ -10,6 +10,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import static shop.ExceptionMessages.PLEASE_CHOOSE_NUMBER_FROM_MENU;
+
 public class UsersMenu implements Menu {
     private CredentialsMenu credentialsMenu = new CredentialsMenu();
     private AdminService adminService = new AdminServiceImpl();

@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static shop.ExceptionMessages.USER_NOT_FOUND;
+
 public class AdminServiceImpl implements AdminService {
     private static final String ADMIN_EMAIL = "admin@mail.com";
     private static final String ADMIN_PASSWORD = "admin";

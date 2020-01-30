@@ -7,6 +7,8 @@ import shop.service.impl.ProductServiceImpl;
 
 import java.util.*;
 
+import static shop.ExceptionMessages.PLEASE_CHOOSE_NUMBER_FROM_MENU;
+
 public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
