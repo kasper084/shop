@@ -1,4 +1,4 @@
-package shop.menu;
+package shop.menu.input;
 
 import java.util.Scanner;
 

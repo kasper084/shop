@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductByName(String name) {
         return productDAO.findProductByName(name)
-                .orElseThrow(() -> new NoSuchElementException(NO_PRODUCT_FOUND));
+                .orElseThrow(() -> new IllegalArgumentException(NO_PRODUCT_FOUND));
     }
 
     @Override
@@ -52,5 +52,11 @@ public class ProductServiceImpl implements ProductService {
         if (description.isEmpty()) product.setDescription(product.getDescription());
 
         productDAO.updateProduct(product);
+    }
+
+    @Override
+    public void deleteProduct(String productName) {
+        Product product = getProductByName(productName);
+        productDAO.deleteProduct(product);
     }
 }

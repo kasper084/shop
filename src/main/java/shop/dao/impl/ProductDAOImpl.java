@@ -11,9 +11,9 @@ public class ProductDAOImpl implements ProductDAO {
 
     private static Map<String, Product> dataBuilder() {
         Map<String, Product> productMap = new HashMap<>();
-        Product apple = setProduct("7","apple", 0.52, "red apple");
-        Product banana = setProduct("8","banana", 0.73, "yellow banana");
-        Product coconut = setProduct("9","coconut", 1.75, "small coconut");
+        Product apple = setProduct("7", "apple", 0.52, "red apple");
+        Product banana = setProduct("8", "banana", 0.73, "yellow banana");
+        Product coconut = setProduct("9", "coconut", 1.75, "small coconut");
         productMap.put(apple.getId(), apple);
         productMap.put(banana.getId(), banana);
         productMap.put(coconut.getId(), coconut);
@@ -48,5 +48,10 @@ public class ProductDAOImpl implements ProductDAO {
 
     public void updateProduct(Product product) {
         productMap.replace(product.getName(), product);
+    }
+
+    @Override
+    public void deleteProduct(Product product) {
+        productMap.remove(product);
     }
 }
