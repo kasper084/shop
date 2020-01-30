@@ -35,13 +35,7 @@ public class LoginMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        Optional<User> loggedUser = userService.login(credentialsMenu.getEmail(),
-                                credentialsMenu.getPassword());
-                        UserSession.setInstance(loggedUser);
-                        loggedUser.ifPresentOrElse
-                                (result -> {
-                                    new UserMenu().show();
-                                }, () -> System.out.println("Try again or register"));
+                        logIn();
                         break;
                     case 2:
                         if (adminService.login(credentialsMenu.getEmail(),
@@ -57,7 +51,9 @@ public class LoginMenu implements Menu {
                                 credentialsMenu.getPassword(),
                                 credentialsMenu.getName(),
                                 credentialsMenu.getPhone());
-                        new UserMenu().show();
+                        System.out.println("User registered");
+                        logIn();
+                        break;
                     case 0:
                         close();
                         break;
@@ -79,5 +75,14 @@ public class LoginMenu implements Menu {
     @Override
     public void close() {
         System.exit(0);
+    }
+
+    private void logIn() {
+        Optional<User> loggedUser = userService.login(credentialsMenu.getEmail(),
+                credentialsMenu.getPassword());
+        UserSession.setInstance(loggedUser);
+        loggedUser.ifPresentOrElse
+                (result -> new UserMenu().show(),
+                        () -> System.out.println("Try again or register"));
     }
 }
