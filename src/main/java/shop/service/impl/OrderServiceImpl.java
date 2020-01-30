@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static shop.ExceptionMessages.ORDER_NOT_FOUND;
 import static shop.enums.OrderStatus.*;
 
 public class OrderServiceImpl implements OrderService {
@@ -32,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrdersForCurrentUser(String userId) {
         return orderDAO.getAllByUserId(userId);
     }
-
+  
     @Override
     public void confirmOrder(String orderId) {
         Order existingOrder = getOrder(orderId);

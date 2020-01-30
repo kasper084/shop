@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static shop.ExceptionMessages.USER_NOT_FOUND;
+
 public class AdminServiceImpl implements AdminService {
     private static final String ADMIN_EMAIL = "admin@mail.com";
     private static final String ADMIN_PASSWORD = "admin";
@@ -85,7 +87,7 @@ public class AdminServiceImpl implements AdminService {
 
     private User getUser(String userEmail) {
         return userService.findUser(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User with such email not found"));
+                .orElseThrow(() -> new IllegalArgumentException(USER_NOT_FOUND));
     }
 
     public void confirmOrder(String orderId) {

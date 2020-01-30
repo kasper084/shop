@@ -11,6 +11,8 @@ import shop.service.impl.UserServiceImpl;
 
 import java.util.*;
 
+import static shop.ExceptionMessages.PLEASE_CHOOSE_NUMBER_FROM_MENU;
+
 public class LoginMenu implements Menu {
     private CredentialsMenu credentialsMenu = new CredentialsMenu();
     private AdminService adminService = new AdminServiceImpl();
@@ -67,7 +69,7 @@ public class LoginMenu implements Menu {
             System.out.println(i.getMessage() + "\n");
             new LoginMenu().show();
         } catch (InputMismatchException i) {
-            System.out.println("Please choose the number from the menu");
+            System.out.println(PLEASE_CHOOSE_NUMBER_FROM_MENU);
             new LoginMenu().show();
         }
     }

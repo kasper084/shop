@@ -2,6 +2,8 @@ package shop.menu;
 
 import java.util.Scanner;
 
+import static shop.ExceptionMessages.EMAIL_FORMAT_WRONG;
+
 public class CredentialsMenu {
     private Scanner scanner = new Scanner(System.in);
 
@@ -17,7 +19,7 @@ public class CredentialsMenu {
                         + retryCount);
                 email = scanner.nextLine();
             } else {
-                throw new IllegalArgumentException("Hey! Email format isn't right");
+                throw new IllegalArgumentException(EMAIL_FORMAT_WRONG );
             }
         }
         return email;

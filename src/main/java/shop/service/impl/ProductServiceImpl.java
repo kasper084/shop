@@ -7,6 +7,8 @@ import shop.service.ProductService;
 
 import java.util.*;
 
+import static shop.ExceptionMessages.NO_PRODUCT_FOUND;
+
 public class ProductServiceImpl implements ProductService {
 
     private ProductDAO productDAO = new ProductDAOImpl();
@@ -18,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductByName(String name) {
         return productDAO.findProductByName(name)
-                .orElseThrow(() -> new NoSuchElementException("No product found"));
+                .orElseThrow(() -> new NoSuchElementException(NO_PRODUCT_FOUND));
     }
 
     @Override

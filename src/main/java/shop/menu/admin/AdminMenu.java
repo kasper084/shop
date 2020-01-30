@@ -8,6 +8,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import static shop.ExceptionMessages.PLEASE_CHOOSE_NUMBER_FROM_MENU;
+
 public class AdminMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
@@ -53,7 +55,7 @@ public class AdminMenu implements Menu {
             System.out.println(i.getMessage() + "\n");
             new AdminMenu().show();
         } catch (InputMismatchException i) {
-            System.out.println("Please choose the number from the menu");
+            System.out.println(PLEASE_CHOOSE_NUMBER_FROM_MENU );
             new AdminMenu().show();
         }
     }
