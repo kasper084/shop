@@ -1,21 +1,18 @@
 package shop.service.impl;
 
+import shop.ExceptionMessages;
 import shop.dao.OrderDAO;
 import shop.dao.impl.OrderDAOImpl;
 
 import shop.entity.Order;
 import shop.entity.Product;
-import shop.entity.User;
 import shop.service.OrderService;
 import shop.service.ProductService;
-import shop.service.session.UserSession;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-import static shop.ExceptionMessages.ORDER_NOT_FOUND;
 import static shop.enums.OrderStatus.*;
 
 public class OrderServiceImpl implements OrderService {
@@ -26,14 +23,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getOrder(String orderId) {
-        return orderDAO.getOrderById(orderId).orElseThrow(() -> new IllegalArgumentException("No such order"));
+        return orderDAO.getOrderById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessages.ORDER_NOT_FOUND));
     }
 
     @Override
     public List<Order> getAllOrdersForCurrentUser(String userId) {
         return orderDAO.getAllByUserId(userId);
     }
-  
+
     @Override
     public void confirmOrder(String orderId) {
         Order existingOrder = getOrder(orderId);
