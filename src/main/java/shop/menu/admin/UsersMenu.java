@@ -80,7 +80,7 @@ public class UsersMenu implements Menu {
                 System.out.println(i.getMessage() + "\n");
                 new UsersMenu().show();
             } catch (InputMismatchException i) {
-                System.out.println("Please choose the number from the menu");
+                System.out.println(PLEASE_CHOOSE_NUMBER_FROM_MENU);
                 new UsersMenu().show();
             }
         }

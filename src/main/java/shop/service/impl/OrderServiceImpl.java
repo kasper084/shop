@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
 
         @Override
         public void confirmOrder (String orderId){
-            Order existingOrder = orderDAO.getOrderById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found"));
+            Order existingOrder = orderDAO.getOrderById(orderId).orElseThrow(() -> new IllegalArgumentException(ORDER_NOT_FOUND));
 
             existingOrder.setStatus(CONFIRMED);
 

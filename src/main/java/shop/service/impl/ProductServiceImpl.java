@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductByName(String name) {
         return productDAO.findProductByName(name)
-                .orElseThrow(() -> new NoSuchElementException("No product found"));
+                .orElseThrow(() -> new NoSuchElementException(NO_PRODUCT_FOUND));
     }
 
     @Override

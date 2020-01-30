@@ -78,7 +78,7 @@ public class AdminServiceImpl implements AdminService {
 
     private User getUser(String userEmail) {
         return userService.findUser(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User with such email not found"));
+                .orElseThrow(() -> new IllegalArgumentException(USER_NOT_FOUND));
     }
 
     public void confirmOrder(String orderId) {
