@@ -1,6 +1,6 @@
 package shop.menu.admin;
 
-import shop.menu.CredentialsMenu;
+import shop.entity.Order;
 import shop.menu.Menu;
 import shop.service.AdminService;
 import shop.service.impl.AdminServiceImpl;
@@ -15,7 +15,7 @@ public class OrderMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
     private AdminService adminService = new AdminServiceImpl();
-    private CredentialsMenu credentialsMenu = new CredentialsMenu();
+    private Order order = new Order();
 
     @Override
     public void addOptions() {
@@ -36,7 +36,7 @@ public class OrderMenu implements Menu {
                     case 1:
                         if (!adminService.getAllPendingOrders().isEmpty()){
                             System.out.println(adminService.getAllPendingOrders());
-                            adminService.confirmOrder(credentialsMenu.getId());
+                            adminService.confirmOrder(order.getOrderId());
                             System.out.println("Order confirmed");
                             showOptions(options);
                         }else{
@@ -47,7 +47,7 @@ public class OrderMenu implements Menu {
                     case 2:
                         if (!adminService.getAllPendingOrders().isEmpty()){
                             System.out.println(adminService.getAllPendingOrders());
-                            adminService.declineOrder(credentialsMenu.getId());
+                            adminService.declineOrder(order.getOrderId());
                             System.out.println("Order canceled");
                             showOptions(options);
                         }else{

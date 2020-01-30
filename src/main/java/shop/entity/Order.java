@@ -1,6 +1,7 @@
 package shop.entity;
 
 import shop.enums.OrderStatus;
+import java.util.Scanner;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class Order {
     private String userId;
     private OrderStatus status;
     private List<Product> productList;
+    private Scanner scanner = new Scanner(System.in);
 
     public String getUserId() {
         return userId;
@@ -42,9 +44,13 @@ public class Order {
         this.productList = productList;
     }
 
+    public String getOrderId(){ System.out.println("Enter ID"); return scanner.nextLine();}
+
+
     @Override
     public String toString() {
         return "orderId='" + id + '\'' +
-                ", userId='" + userId + '\'';
+                ", userId='" + userId + '\''+
+                ", order status" + status;
     }
 }
