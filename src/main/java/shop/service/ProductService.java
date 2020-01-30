@@ -14,5 +14,5 @@ public interface ProductService {
 
     void addProduct(String name, Double price, String description);
 
-    void editProduct(String name, Double price, String description);
+    void editProduct(Product product, String name, Double price, String description);
 }

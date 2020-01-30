@@ -102,7 +102,4 @@ public class AdminServiceImpl implements AdminService {
         productService.addProduct(productName, price, description);
     }
 
-    public void editProduct(String productId, Double price, String description) {
-        productService.editProduct(productId, price, description);
-    }
 }

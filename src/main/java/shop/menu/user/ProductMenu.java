@@ -51,14 +51,20 @@ public class ProductMenu implements Menu {
                             System.out.println(productService.getProductByName(name));
                         } catch (NoSuchElementException e) {
                             System.out.println(e.getMessage());
+                            showOptions(options);
                         }
                         break;
                     case 3:
                         System.out.println("Enter product's name you want to add to Order");
                         String productName = scanner.next();
-                        orderService.addProductToOrder(productName);
-                        System.out.println("Product " + productName + " added to cart");
-                        System.out.println("Add another product enter 3, checkout 4");
+                        try {
+                            orderService.addProductToOrder(productName);
+                            System.out.println("Product " + productName + " added to cart");
+                            System.out.println("Add another product enter 3, checkout 4");
+                        } catch (NoSuchElementException e) {
+                            System.out.println(e.getMessage());
+                            showOptions(options);
+                            }
                         break;
                     case 4:
                         orderService.checkoutOrder(UserSession.getInstance().getUser().get().getId());

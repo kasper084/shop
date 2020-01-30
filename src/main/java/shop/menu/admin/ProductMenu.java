@@ -1,13 +1,11 @@
 package shop.menu.admin;
 
+import shop.entity.Product;
 import shop.menu.Menu;
 import shop.service.ProductService;
 import shop.service.impl.ProductServiceImpl;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static shop.ExceptionMessages.PLEASE_CHOOSE_NUMBER_FROM_MENU;
 
@@ -32,17 +30,25 @@ public class ProductMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        System.out.println("Select product for update: ");
-                        productService.getProductByName(scanner.next());
-                        System.out.println("Enter new name or leave empty if no update: ");
-                        String newName = scanner.next();
-                        System.out.println("Enter new price or leave 0 if no update: ");
-                        Double newPrice = scanner.nextDouble();
-                        scanner.nextLine();
-                        System.out.println("Enter new description or leave empty if no update: ");
-                        String newDescription = scanner.nextLine();
-                        productService.editProduct(newName, newPrice, newDescription);
-                        System.out.println("Your updated product is: " + newName + ", "+ newPrice + ", "+ newDescription);
+                        try {
+                            System.out.println("Select product for update: ");
+                            String name = scanner.next();
+                            Product product = productService.getProductByName(name);
+                            System.out.println(product);
+                            System.out.println("Enter new name or leave empty if no update: ");
+                            String newName = scanner.nextLine();
+                            scanner.nextLine();
+                            System.out.println("Enter new price or leave 0 if no update: ");
+                            Double newPrice = scanner.nextDouble();
+                            scanner.nextLine();
+                            System.out.println("Enter new description or leave empty if no update: ");
+                            String newDescription = scanner.nextLine();
+                            productService.editProduct(product, newName, newPrice, newDescription);
+                            System.out.println("Your updated product is: " + product.getName() + ", " + product.getPrice() + ", " + product.getDescription());
+                        } catch (NoSuchElementException e) {
+                            System.out.println(e.getMessage());
+                            showOptions(options);
+                        }
                         break;
                     case 2:
                         System.out.println("Add name for new product: ");
@@ -53,7 +59,7 @@ public class ProductMenu implements Menu {
                         System.out.println("Add description for new product: ");
                         String description = scanner.nextLine();
                         productService.addProduct(name, price, description);
-                        System.out.println("You added new product: " + name + ", "+price + ", "+ description);
+                        System.out.println("You added new product: " + name + ", " + price + ", " + description);
                         break;
                     case 0:
                         close();
