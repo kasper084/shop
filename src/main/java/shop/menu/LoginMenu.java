@@ -1,16 +1,15 @@
 package shop.menu;
 
+import shop.entity.User;
 import shop.menu.admin.AdminMenu;
 import shop.menu.user.UserMenu;
 import shop.service.AdminService;
 import shop.service.UserService;
+import shop.service.session.UserSession;
 import shop.service.impl.AdminServiceImpl;
 import shop.service.impl.UserServiceImpl;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static shop.ExceptionMessages.PLEASE_CHOOSE_NUMBER_FROM_MENU;
 
@@ -38,13 +37,7 @@ public class LoginMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        if (userService.login(credentialsMenu.getEmail(),
-                                credentialsMenu.getPassword())) {
-                            new UserMenu().show();
-                        } else {
-                            System.out.println("Try again or register");
-                            showOptions(options);
-                        }
+                        logIn();
                         break;
                     case 2:
                         if (adminService.login(credentialsMenu.getEmail(),
@@ -60,7 +53,9 @@ public class LoginMenu implements Menu {
                                 credentialsMenu.getPassword(),
                                 credentialsMenu.getName(),
                                 credentialsMenu.getPhone());
-                        new UserMenu().show();
+                        System.out.println("User registered");
+                        logIn();
+                        break;
                     case 0:
                         close();
                         break;
@@ -82,5 +77,15 @@ public class LoginMenu implements Menu {
     @Override
     public void close() {
         System.exit(0);
+    }
+
+    private void logIn() {
+        Optional<User> loggedUser = userService.login(credentialsMenu.getEmail(),
+                credentialsMenu.getPassword());
+        UserSession.setInstance(loggedUser);
+        loggedUser.ifPresentOrElse
+                (result -> new UserMenu().show(),
+                        () -> System.out.println("Try again or register"));
+        showOptions(options);
     }
 }

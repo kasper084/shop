@@ -2,7 +2,10 @@ package shop.menu.user;
 
 import shop.entity.Product;
 import shop.menu.Menu;
+import shop.service.OrderService;
 import shop.service.ProductService;
+import shop.service.session.UserSession;
+import shop.service.impl.OrderServiceImpl;
 import shop.service.impl.ProductServiceImpl;
 
 import java.util.*;
@@ -13,7 +16,7 @@ public class ProductMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
     private ProductService productService = new ProductServiceImpl();
-    //privet OrderService orderService = new OrderService();
+    private OrderService orderService = new OrderServiceImpl();
 
     @Override
     public void addOptions() {
@@ -35,24 +38,31 @@ public class ProductMenu implements Menu {
                 switch (choice) {
                     case 1:
                         for (Product product : productService.getAllProducts()) {
-                            System.out.println(product);
+                            System.out.println(product.toString());
                         }
                         if (productService.getAllProducts().isEmpty()) {
                             System.out.println("Products list is empty");
                         }
                         break;
                     case 2:
+                        System.out.println("Enter product name ");
+                        String name = scanner.next();
                         try {
-                            System.out.println(productService.getProductByName(scanner.nextLine()));
+                            System.out.println(productService.getProductByName(name));
                         } catch (NoSuchElementException e) {
                             System.out.println(e.getMessage());
                         }
                         break;
                     case 3:
-                        //orderService.addSpecificProduct(productId);
+                        System.out.println("Enter product's name you want to add to Order");
+                        String productName = scanner.next();
+                        orderService.addProductToOrder(productName);
+                        System.out.println("Product " + productName + " added to cart");
+                        System.out.println("Add another product enter 3, checkout 4");
                         break;
                     case 4:
-                        //orderService.checkout(orderId);
+                        orderService.checkoutOrder(UserSession.getInstance().getUser().get().getId());
+                        System.out.println("Order was saved");
                         break;
                     case 0:
                         close();

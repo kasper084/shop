@@ -51,7 +51,9 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public Optional<Order> getOrderById(String orderId) {
-        return Optional.empty();
+        return orderMap.values().stream()
+                .filter(order -> order.getId().equals(orderId))
+                .findFirst();
     }
 
     @Override
@@ -75,7 +77,6 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public List<Order> getAll() {
-
-        return null;
+        return new ArrayList<>(orderMap.values());
     }
 }

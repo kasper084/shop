@@ -2,6 +2,7 @@ package shop.service.impl;
 
 import shop.entity.Order;
 import shop.entity.User;
+import shop.enums.OrderStatus;
 import shop.enums.UserStatus;
 import shop.service.AdminService;
 import shop.service.OrderService;
@@ -9,7 +10,6 @@ import shop.service.ProductService;
 import shop.service.UserService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,6 +72,13 @@ public class AdminServiceImpl implements AdminService {
         return new ArrayList<>(userService.getAll());
     }
 
+    @Override
+    public List<Order> getAllPendingOrders() {
+        return orderService.getAll().stream()
+                .filter(order -> order.getStatus().equals(OrderStatus.PENDING))
+                .collect(Collectors.toList());
+    }
+
     private void changeUserStatus(String userEmail, UserStatus status) {
         User user = getUser(userEmail);
         user.setStatus(status);
@@ -87,7 +94,7 @@ public class AdminServiceImpl implements AdminService {
         orderService.confirmOrder(orderId);
     }
 
-    public void declineOrder(Order orderId) {
+    public void declineOrder(String orderId) {
         orderService.declineOrder(orderId);
     }
 

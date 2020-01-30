@@ -1,20 +1,23 @@
 package shop.service;
 
 import shop.entity.Order;
+import shop.entity.Product;
 
 import java.util.List;
 
 public interface OrderService {
 
-    void addProductToOrder(String productId);
+    List<Product> addProductToOrder(String name);
 
-    void  getOrder(String orderId);
+    Order getOrder(String orderId);
 
-    List<Order> getAllOrdersForUser(String usersId);
+    List<Order> getAllOrdersForCurrentUser(String userId);
 
     void confirmOrder(String orderId);
 
-    void checkoutOrder(Order order);
+    void checkoutOrder(String userId);
 
-    void declineOrder(Order order);
+    void declineOrder(String orderId);
+
+    List<Order> getAll();
 }
