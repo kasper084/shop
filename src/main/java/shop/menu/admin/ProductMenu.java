@@ -34,9 +34,8 @@ public class ProductMenu implements Menu {
                             System.out.println("Select product for update: ");
                             String name = scanner.next();
                             Product product = productService.getProductByName(name);
-                            System.out.println(product);
                             System.out.println("Enter new name or leave empty if no update: ");
-                            String newName = scanner.nextLine();
+                            String newName = scanner.next();
                             scanner.nextLine();
                             System.out.println("Enter new price or leave 0 if no update: ");
                             Double newPrice = scanner.nextDouble();

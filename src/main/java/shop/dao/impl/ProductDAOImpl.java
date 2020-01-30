@@ -47,6 +47,6 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     public void updateProduct(Product product) {
-        productMap.replace(product.getName(), product);
+        productMap.replace(product.getId(), product);
     }
 }
