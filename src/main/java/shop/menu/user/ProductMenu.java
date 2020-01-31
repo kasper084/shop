@@ -46,7 +46,7 @@ public class ProductMenu implements Menu {
                         if (productService.getAllProducts().isEmpty()) {
                             System.out.println("Products list is empty");
                         }
-                        showOptions(options);
+                        System.out.println("Press \"0\" to go back");
                         break;
                     case 2:
                         System.out.println("Enter product name ");
