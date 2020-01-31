@@ -33,7 +33,7 @@ public class OrderMenu implements Menu {
                 switch (choice) {
                     case 1:
                         User user = UserSession.getInstance().getUser();
-                        List<Order> orders = null;
+                        List<Order> orders = Collections.emptyList();
                         if (Objects.nonNull(user)) {
                             orders = orderService.getAllOrdersForCurrentUser(user.getId());
                         } else System.out.println("No logged user");
