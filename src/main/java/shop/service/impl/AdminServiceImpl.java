@@ -97,12 +97,4 @@ public class AdminServiceImpl implements AdminService {
     public void declineOrder(String orderId) {
         orderService.declineOrder(orderId);
     }
-
-    public void addProduct(String productName, Double price, String description) {
-        productService.addProduct(productName, price, description);
-    }
-
-    public void editProduct(String productId, Double price, String description) {
-        productService.editProduct(productId, price, description);
-    }
 }

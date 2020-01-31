@@ -42,7 +42,6 @@ public class ProductMenu implements Menu {
                             System.out.println(product);
                         }
                         String productName = productInput.getName();
-                        Product product = productService.getProductByName(productName);
                         System.out.println("Enter new product name");
                         productService.getProductByName(productName);
                         String newName = productInput.getName();
@@ -50,7 +49,7 @@ public class ProductMenu implements Menu {
                         Double newPrice = productInput.getPrice();
                         System.out.println("Enter new description or leave empty if no update: ");
                         String newDescription = productInput.getDescription();
-                        productService.editProduct(product, newName, newPrice, newDescription);
+                        productService.editProduct(newName, newPrice, newDescription);
                         System.out.printf("Your updated product is: %s, %s, %s%n",
                                 newName, newPrice, newDescription);
                         showOptions(options);
@@ -60,7 +59,6 @@ public class ProductMenu implements Menu {
                         String name = productInput.getName();
                         System.out.println("Add price for new product: ");
                         Double price = productInput.getPrice();
-                        scanner.nextLine();
                         System.out.println("Add description for new product: ");
                         String description = productInput.getDescription();
                         productService.addProduct(name, price, description);
