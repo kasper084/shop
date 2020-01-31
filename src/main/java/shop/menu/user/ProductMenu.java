@@ -58,7 +58,6 @@ public class ProductMenu implements Menu {
                         orderService.addProductToOrder(name);
                         System.out.printf("Product %s added to cart%n", name);
                         System.out.println("Add another product enter 3, checkout 4");
-                        showOptions(options);
                         break;
                     case 4:
                         User user = UserSession.getInstance().getUser();

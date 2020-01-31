@@ -14,9 +14,7 @@ public class CredentialsMenu {
         while (!isEmailValid(email)) {
             retryCount--;
             if (retryCount != 0) {
-                System.out.println("Invalid format. Try again" +
-                        "\nNumber of tries left:"
-                        + retryCount);
+                System.out.printf("Invalid format. Try again\nNumber of tries left:%d%n", retryCount);
                 email = scanner.nextLine();
             } else {
                 throw new IllegalArgumentException(EMAIL_FORMAT_WRONG );
