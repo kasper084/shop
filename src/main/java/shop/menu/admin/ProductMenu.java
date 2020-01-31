@@ -56,7 +56,7 @@ public class ProductMenu implements Menu {
                         Double newPrice = productInput.getPrice();
                         productService.editProduct(product, newName, newPrice, newDescription);
                         System.out.printf("Your updated product is: %s, %s, %s%n",
-                                newName, newPrice, newDescription);
+                                product.getName(), product.getDescription(), product.getPrice());
                         showOptions(options);
                         break;
                     case 2:
