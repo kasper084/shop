@@ -41,13 +41,16 @@ public class ProductMenu implements Menu {
                         for (Product product : editProductList) {
                             System.out.println(product);
                         }
-                        productService.getProductByName(productInput.getName());
+                        String productName = productInput.getName();
+                        Product product = productService.getProductByName(productName);
+                        System.out.println("Enter new product name");
+                        productService.getProductByName(productName);
                         String newName = productInput.getName();
                         System.out.println("Enter new price or leave 0 if no update: ");
                         Double newPrice = productInput.getPrice();
                         System.out.println("Enter new description or leave empty if no update: ");
                         String newDescription = productInput.getDescription();
-                        productService.editProduct(newName, newPrice, newDescription);
+                        productService.editProduct(product, newName, newPrice, newDescription);
                         System.out.printf("Your updated product is: %s, %s, %s%n",
                                 newName, newPrice, newDescription);
                         showOptions(options);
@@ -68,8 +71,8 @@ public class ProductMenu implements Menu {
                     case 3:
                         System.out.println("Select product you want to delete: ");
                         List<Product> deleteProductList = productService.getAllProducts();
-                        for (Product product : deleteProductList) {
-                            System.out.println(product);
+                        for (Product productToDel : deleteProductList) {
+                            System.out.println(productToDel);
                         }
                         productService.deleteProduct(productInput.getName());
                         System.out.println("Product was deleted");

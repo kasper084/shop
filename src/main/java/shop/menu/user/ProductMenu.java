@@ -1,5 +1,6 @@
 package shop.menu.user;
 
+import shop.entity.Order;
 import shop.entity.Product;
 import shop.entity.User;
 import shop.menu.Menu;
@@ -51,21 +52,30 @@ public class ProductMenu implements Menu {
                     case 2:
                         System.out.println("Enter product name ");
                         System.out.println(productService.getProductByName(productInput.getName()));
+                        System.out.println("Press \"0\" to go back");
                         break;
                     case 3:
+                        User user = getCurrentUser();
+                        if (Objects.nonNull(user)) {
+                            orderService.checkoutOrder(user.getId());
+                            System.out.println("Product was added to your card");
+                        } else {
+                            System.out.println("No logged user");
+                        }
+                        showOptions(options);
                         System.out.println("Enter product's name you want to add to Order");
                         String name = productInput.getName();
                         orderService.addProductToOrder(name);
                         System.out.printf("Product %s added to cart%n", name);
                         System.out.println("Add another product enter 3, checkout 4");
+                        System.out.println("Press \"0\" to go back");
                         break;
                     case 4:
-                        User user = UserSession.getInstance().getUser();
-                        if (Objects.nonNull(user)) {
-                            orderService.checkoutOrder(user.getId());
+                        if (isUserHasOrder()) {
+                            orderService.checkoutOrder(getCurrentUser().getId());
                             System.out.println("Order was saved");
                         } else {
-                            System.out.println("No logged user");
+                            System.out.println("This user haven't made any orders yet");
                         }
                         showOptions(options);
                         break;
@@ -90,4 +100,15 @@ public class ProductMenu implements Menu {
     public void close() {
         new UserMenu().show();
     }
+
+    private boolean isUserHasOrder() {
+        User user = getCurrentUser();
+        List<Order> orders = orderService.getAllOrdersForCurrentUser(user.getId());
+        return !orders.isEmpty();
+    }
+
+    private User getCurrentUser () {
+        return UserSession.getInstance().getUser();
+    }
+
 }
