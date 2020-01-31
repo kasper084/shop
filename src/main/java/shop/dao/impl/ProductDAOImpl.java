@@ -43,7 +43,7 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     public void addProduct(Product product) {
-        productMap.put(product.getName(), product);
+        productMap.put(product.getId(), product);
     }
 
     public void updateProduct(Product product) {

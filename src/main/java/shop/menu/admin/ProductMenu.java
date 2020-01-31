@@ -18,6 +18,7 @@ public class ProductMenu implements Menu {
     public void addOptions() {
         options.add("1. Edit product details");
         options.add("2. Add new product");
+        options.add("3. Show products");
         options.add("0. Go back");
     }
 
@@ -28,15 +29,15 @@ public class ProductMenu implements Menu {
         try {
             while (true) {
                 int choice = scanner.nextInt();
+                scanner.nextLine();
                 switch (choice) {
                     case 1:
                         try {
                             System.out.println("Select product for update: ");
-                            String name = scanner.next();
+                            String name = scanner.nextLine();
                             Product product = productService.getProductByName(name);
                             System.out.println("Enter new name or leave empty if no update: ");
-                            String newName = scanner.next();
-                            scanner.nextLine();
+                            String newName = scanner.nextLine();
                             System.out.println("Enter new price or leave 0 if no update: ");
                             Double newPrice = scanner.nextDouble();
                             scanner.nextLine();
@@ -51,7 +52,7 @@ public class ProductMenu implements Menu {
                         break;
                     case 2:
                         System.out.println("Add name for new product: ");
-                        String name = scanner.next();
+                        String name = scanner.nextLine();
                         System.out.println("Add price for new product: ");
                         Double price = scanner.nextDouble();
                         scanner.nextLine();
@@ -59,6 +60,14 @@ public class ProductMenu implements Menu {
                         String description = scanner.nextLine();
                         productService.addProduct(name, price, description);
                         System.out.println("You added new product: " + name + ", " + price + ", " + description);
+                        break;
+                    case 3:
+                        for (Product product : productService.getAllProducts()) {
+                            System.out.println(product.toString());
+                        }
+                        if (productService.getAllProducts().isEmpty()) {
+                            System.out.println("Products list is empty");
+                        }
                         break;
                     case 0:
                         close();
