@@ -39,10 +39,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void editProduct( String name, Double price, String description) {
-        Product product = getProductByName(name);
+    public void editProduct(Product product, String name, Double price, String description) {
         if (!name.isEmpty()) product.setName(name);
-        if (!price.isNaN()) product.setPrice(price);
+        if (price != 0) product.setPrice(price);
         if (!description.isEmpty()) product.setDescription(description);
         productDAO.updateProduct(product);
     }

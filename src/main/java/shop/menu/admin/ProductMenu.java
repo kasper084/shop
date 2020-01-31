@@ -36,20 +36,25 @@ public class ProductMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        System.out.println("Enter name of product you want to change");
                         List<Product> editProductList = productService.getAllProducts();
-                        for (Product product : editProductList) {
-                            System.out.println(product);
+                        if (editProductList.isEmpty()) {
+                            System.out.println("List is empty");
+                            new ProductMenu().show();
+                        } else {
+                            for (Product product : editProductList) {
+                                System.out.println(product);
+                            }
                         }
+                        System.out.println("Enter name of product you want to change");
                         String productName = productInput.getName();
+                        Product product = productService.getProductByName(productName);
                         System.out.println("Enter new product name");
-                        productService.getProductByName(productName);
                         String newName = productInput.getName();
-                        System.out.println("Enter new price or leave 0 if no update: ");
-                        Double newPrice = productInput.getPrice();
                         System.out.println("Enter new description or leave empty if no update: ");
                         String newDescription = productInput.getDescription();
-                        productService.editProduct(newName, newPrice, newDescription);
+                        System.out.println("Enter new price or leave 0 if no update: ");
+                        Double newPrice = productInput.getPrice();
+                        productService.editProduct(product, newName, newPrice, newDescription);
                         System.out.printf("Your updated product is: %s, %s, %s%n",
                                 newName, newPrice, newDescription);
                         showOptions(options);
