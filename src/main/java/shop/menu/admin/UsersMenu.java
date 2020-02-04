@@ -1,6 +1,6 @@
 package shop.menu.admin;
 
-import shop.menu.CredentialsMenu;
+import shop.menu.input.CredentialsMenu;
 import shop.menu.Menu;
 import shop.service.AdminService;
 import shop.service.impl.AdminServiceImpl;

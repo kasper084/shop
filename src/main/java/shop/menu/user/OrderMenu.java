@@ -1,5 +1,6 @@
 package shop.menu.user;
 
+import shop.entity.Order;
 import shop.entity.User;
 import shop.menu.Menu;
 import shop.service.OrderService;
@@ -31,9 +32,18 @@ public class OrderMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        UserSession.getInstance().getUser().ifPresentOrElse(user -> {
-                            System.out.println(orderService.getAllOrdersForCurrentUser(user.getId()));
-                        }, () -> System.out.println("No orders found"));
+                        User user = UserSession.getInstance().getUser();
+                        List<Order> orders = Collections.emptyList();
+                        if (Objects.nonNull(user)) {
+                            orders = orderService.getAllOrdersForCurrentUser(user.getId());
+                        } else System.out.println("No logged user");
+
+                        if (!orders.isEmpty()) {
+                            for (Order order : orders) {
+                                System.out.printf("[%s]%n", order);
+                            }
+                        } else System.out.println("No orders found");
+
                         System.out.println("Press \"0\" to go back");
                         break;
                     case 0:

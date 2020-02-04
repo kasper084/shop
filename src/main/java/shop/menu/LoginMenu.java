@@ -1,7 +1,7 @@
 package shop.menu;
 
-import shop.entity.User;
 import shop.menu.admin.AdminMenu;
+import shop.menu.input.CredentialsMenu;
 import shop.menu.user.UserMenu;
 import shop.service.AdminService;
 import shop.service.UserService;
@@ -37,7 +37,14 @@ public class LoginMenu implements Menu {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        logIn();
+                        userService.login(credentialsMenu.getEmail(),
+                                credentialsMenu.getPassword()).ifPresentOrElse(user -> {
+                            UserSession.getInstance().setLoggedUser(user);
+                            new UserMenu().show();
+                        }, () -> {
+                            System.out.println("Try again or register");
+                        });
+                        showOptions(options);
                         break;
                     case 2:
                         if (adminService.login(credentialsMenu.getEmail(),
@@ -54,7 +61,7 @@ public class LoginMenu implements Menu {
                                 credentialsMenu.getName(),
                                 credentialsMenu.getPhone());
                         System.out.println("User registered");
-                        logIn();
+                        new LoginMenu().show();
                         break;
                     case 0:
                         close();
@@ -77,15 +84,5 @@ public class LoginMenu implements Menu {
     @Override
     public void close() {
         System.exit(0);
-    }
-
-    private void logIn() {
-        Optional<User> loggedUser = userService.login(credentialsMenu.getEmail(),
-                credentialsMenu.getPassword());
-        UserSession.setInstance(loggedUser);
-        loggedUser.ifPresentOrElse
-                (result -> new UserMenu().show(),
-                        () -> System.out.println("Try again or register"));
-        showOptions(options);
     }
 }

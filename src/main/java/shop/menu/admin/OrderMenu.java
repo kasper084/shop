@@ -1,6 +1,7 @@
 package shop.menu.admin;
 
 import shop.menu.Menu;
+import shop.menu.input.OrderInput;
 import shop.service.AdminService;
 import shop.service.impl.AdminServiceImpl;
 
@@ -15,8 +16,8 @@ import static shop.ExceptionMessages.PLEASE_CHOOSE_NUMBER_FROM_MENU;
 public class OrderMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
     private List<String> options = new ArrayList<>();
-    private AdminService adminService = new AdminServiceImpl();
     private OrderInput orderInput = new OrderInput();
+    private AdminService adminService = new AdminServiceImpl();
 
     @Override
     public void addOptions() {
@@ -68,7 +69,7 @@ public class OrderMenu implements Menu {
             System.out.println(i.getMessage() + "\n");
             new OrderMenu().show();
         } catch (InputMismatchException i) {
-            System.out.println(PLEASE_CHOOSE_NUMBER_FROM_MENU );
+            System.out.println(PLEASE_CHOOSE_NUMBER_FROM_MENU);
             new OrderMenu().show();
         }
     }

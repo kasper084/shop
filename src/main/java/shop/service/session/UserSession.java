@@ -8,27 +8,23 @@ public final class UserSession {
 
     private static UserSession instance;
 
-    private Optional<User> loggedUser;
+    private User loggedUser;
 
-    public UserSession(Optional<User> loggedUser) {
-        this.loggedUser = loggedUser;
-    }
-
-    public static void setInstance(Optional<User> loggedUser) {
-        if (instance == null) {
-            instance = new UserSession(loggedUser);
-        }
+    private UserSession() {
     }
 
     public static UserSession getInstance() {
+        if (instance == null) {
+            instance = new UserSession();
+        }
         return instance;
     }
 
-    public Optional<User> getUser() {
-        return loggedUser;
+    public void setLoggedUser(User user) {
+        this.loggedUser = user;
     }
 
-    public void cleanSession() {
-        loggedUser = null;
+    public User getUser() {
+        return loggedUser;
     }
 }
